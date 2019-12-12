@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html>
+<head>
+	<title>Bookie Store-Term</title>
+<meta charset = "utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	.main {margin:auto;
+		   margin-right:10px;
+		   font-family: 'Georgia' ;
+	}
+
+	.border{position:relative;
+			width:1050px;
+			height:1000px;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			background: #060c21;
+			margin:50px 0px 0px 200px;
+
+	}
+
+	.border:before{content: ' ';
+				   position:absolute;
+				   top: -2px;
+				   left:-2px;
+				   right:-2px;
+				   bottom:-2px;
+				   background:#fff;
+				   z-index:-1;
+				   
+	}
+
+	.border:after{content: ' ';
+				   position:absolute;
+				   top: -2px;
+				   left:-2px;
+				   right:-2px;
+				   bottom:-2px;
+				   background:#fff;
+				   z-index:-2;
+				   filter: blur(40px); 
+				   
+	}
+
+	.border:before, .border:after{background:linear-gradient(235deg, #ff2200,#060c21, #00bcd4);
+	}
+
+	.content{padding:20px;
+			 box-sizing:border-box;
+			 color:#fff;
+
+	}
+
+	.content h2{font-family:Times New Roman;
+				font-style:oblique;
+				font-size: 40px;
+				text-align:center;
+
+
+	}
+
+	.content li{font-family:'Georgia';
+				font-size:25px;
+
+	}
+
+	.content p{font-family:serif;
+			   font-size:20px;
+
+	}
+
+	footer{background-color:#282e34;
+           height:180px;
+           color:#ddd;
+           text-align: center;
+           width: 100%;
+           margin-top:170px;
+           
+    }
+   
+	
+	body{background: url(images/background.jpg);
+		 background-size:cover;
+		 background-position:80px 120px;
+		 font-family:sans-serif;
+
+	}
+	ul{list-style-type:none;
+		float: right;
+		margin-top: 25px;
+		margin-right: 15px;
+
+	}
+	ul li{display: inline-block;
+
+	}
+	ul li a{text-decoration: none;
+		    color: black;
+		    padding: 5px 20px;
+		    border: 1px solid black;
+		    transition:0.6s ease;
+	}
+	ul li a:hover{background-color:black;
+		          color:white;
+	}
+	
+</style>
+</head>
+<body>
+		<div class="main">
+				<ul>
+						<li><a href="home.html">Home</a></li>
+						<li><a href="book.html">Books</a></li>
+						<li><a href="bookings.php">Bookings</a></li>
+						<li><a href="login.php">Log In</a></li>
+						<li><a href="signup.php">Sign Up</a></li>
+						<li><a href="termsofuse.html">Terms of Use</a></li>
+						<li><a href="about.html">About Us</a></li>
+						<li><a href="contactus.php">Contact Us</a></li>
+						<li><a href="faq.html">FAQ</a></li>
+						</ul>
+			</div>
+    
+    <div>
+    	<img src="images/Bookie logo.png" width="100px" height="90px">
+    </div>
+
+    <div class="border">
+    	<div class="content">
+    		<h2>Terms Of Use</h2>
+    	<!-- ordered list starts with the ol tag -->
+    	<!-- The type attribute of the ol tag, defines the type of the list item marker -->
+    	<ol type="1">
+    		<!-- The li tag defines a list item -->
+    		<li>Registration</li>
+    		<p>There is no registration fee required in order to create the account.</p><br>
+
+    		<li>Deposit Fee</li>
+    		<p>A deposit fee will be required by each user upon creation of the account. The deposit will then be refunded upon deletion of the user's account</p><br>
+
+    		<li>Rental Fee</li>
+    		<p>For each book rented, the rental to be paid is RM7 per month</p><br>
+
+    		<li>Rental Period</li>
+    		<p>The period has no limit, as long as the user pay the fees for each month</p><br>
+
+    		<li>Lateness</li>
+    		<p>In case of failure to return the books in the stated time, warning messages will be sent to user's email address. After the third warning has been sent, failure to return the book on time will result in cancellation of the deposit refund.</p><br>
+
+    		<li>Damages</li>
+    		<p>Any damages caused to the book will result in a deduction from the deposit refund upon deletion of the account.</p>
+    	</ol>
+    	</div>
+    </div>
+
+	<footer>
+			<script type="text/javascript">
+				var date = '23/06/2019';
+				var date2 = '01/07/2019';
+			</script>
+			<p>
+			Creation on :
+			<script type="text/javascript">
+			document.write(date)
+			</script>
+			</p>
+			<p>
+			The Last modified date is:
+			<script type="text/javascript">
+			document.write(date2)
+			</script>
+			</p>
+		Copyright &copy; 2019 BookieStore<br>
+		<br><b>Disclaimer:</b> Materials such as images,and book synopses on this website do not belong to Bookie Store.<br>
+		These materials are obtained from the Internet for assignment purpose only. 
+	</footer>
+
+
+</body>
+</html>
+

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html>
+<head>
+	<title>Bookie Store</title>
+<meta charset = "utf-8">
+<style>
+	.main {margin:auto;
+		   margin-right:10px;
+		   font-family: 'Georgia' ;
+	}
+	.text {font-family: monospace; 
+		   color: black; 
+		   font-size: 26pt; 
+		   padding: 8px 8px 8px 32px; 
+		   text-align: center;
+		  
+	}
+	.box1 {float:right;
+		   border: 3px solid black;
+	       width: 250px;
+	       height: 358px;
+	       padding-right:8px;
+	       margin: 10px;
+	       margin-top: 20px;
+		   text-align: center; 
+		   margin-right: 65px;
+		  
+	}
+	.box2{float:right;
+		  border: 3px solid black;
+	      width: 250px;
+	      height: 250px;
+	      padding:20px 2px 20px 15px;
+	      margin-top:440px;
+	      margin-right:-280px;
+	      
+	}
+	#trending{margin: 5px;
+	          display: inline-block;
+	          padding-bottom: 20px;
+		      width: 68%;
+		   
+	}
+    #trending img{ width: 150px;
+			    height: 240px;
+			    padding-left: 40px; 
+			    padding-top: 20px;
+	}
+		
+	#Comingsoon{margin: 5px;
+	          display: inline-block;
+	          padding-bottom: 20px;
+		      width: 68%;
+	}
+	#Comingsoon img{width: 150px;
+			    height: 240px;
+			    padding-left: 40px; 
+			    padding-top: 20px;
+	}
+	
+	body{background: url(images/background.jpg);
+		 background-size:cover;
+		 
+		 font-family:sans-serif;
+		
+	}
+	}
+    .section{text-align:center;
+    	     padding: 5px 80px;
+    }
+    .section-dark{background-color:#282e34;
+    			  color:#ddd;
+    }
+	ul{list-style-type:none;
+		float: right;
+		margin-top: 25px;
+		margin-right: 15px;
+	}
+	ul li{display: inline-block;
+	}
+	ul li a{text-decoration: none;
+		    color: black;
+		    padding: 5px 20px;
+		    border: 1px solid black;
+		    transition:0.6s ease;
+	}
+	ul li a:hover{background-color:black;
+		          color:white;
+	}
+	
+	footer{background-color:#282e34;
+           height:180px;
+           color:#ddd;
+           text-align: center;
+           width: 100%;
+           margin-top:170px;
+           
+    }
+</style>
+</head>
+<body1>
+    <div class="main">
+			<ul>
+					<li><a href="home.html">Home</a></li>
+					<li><a href="book.html">Books</a></li>
+					<li><a href="bookings.php">Bookings</a></li>
+					<li><a href="login.php">Log In</a></li>
+					<li><a href="signup.php">Sign Up</a></li>
+					<li><a href="termsofuse.html">Terms of Use</a></li>
+					<li><a href="about.html">About Us</a></li>
+					<li><a href="contactus.php">Contact Us</a></li>
+					<li><a href="faq.html">FAQ</a></li>
+					</ul>
+    </div>
+
+	<div>
+		<img src="images/Bookie logo.png" width="100px" height="90px">
+	</div>  
+
+        <div class = "box1"> 
+			<p style = "font-family: Arial; font-size: 20px">Promotions<br>
+			<span style ="font-family: Times New Roman; font-weight: bold;font-size:30px" >Rent 5, 10% off</span></p>
+			<img src ="images/book.jpg" alt="Book" height="250" width="230">
+		</div>
+
+		<div class="box2">
+			<img src="images/book2.jpg" alt="Quote" height="250" width="230">
+		</div>
+
+		<fieldset id="trending"><legend><h2 style="font-family:sans-serif;">Trending</h2></legend>
+			<img src ="images/A Clash of Kings.jpg" alt="A Clash of Kings">
+			<img src ="images/An Anonymous Girl.jpg" alt="An Anonymous Girl">
+			<img src ="images/Machines Like Me.jpg" alt="Machines Like Me">
+			<img src ="images/Spring.jpg" alt="The Editor">
+			<img src ="images/The Editor.jpg" alt="The Editor">
+			<img src ="images/The Tales of Beedle The Bard.jpg" alt="The Tales of Beedle The Bard">
+			<img src ="images/The Water Cure.jpg" alt="The Water Cure">
+			<img src ="images/You Know You Want This.jpg" alt="You Know You Want This">
+			<img src ="images/The Age of Light.jpg" alt="The age of Light">
+			<img src ="images/The Last Romantics.jpg" alt="The Last Romantics">
+		</fieldset>
+
+		<fieldset id="Comingsoon"><legend><h2 style="font-family:sans-serif;">Coming Soon!</h2></legend>
+			<img src="images/Lost and Found.jpg" alt="Lost and Found">
+			<img src="images/Paranoid.jpg" alt="Paranoid">
+			<img src="images/Rules of War.jpg" alt="Rules of War">
+			<img src="images/Wings of Fire.jpg" alt="Wings of Fire">
+			<img src="images/The Nickel Boys.jpg" alt="The Nickel Boys">
+			<img src="images/Willing to Die.jpg" alt="Willing to Die">
+      		<img src="images/Blood Truth.jpg" alt="Blood Truth">
+      		<img src="images/The Wolf and His Wife.jpg" alt="The Wolf and His Wife">
+      		<img src="images/Star Wars Thrawn Treason.jpg" alt="Star Wars Thrawn Treason">
+     		<img src="images/The Lost Night.jpg" alt="The Lost Night">
+		</fieldset>
+		
+				<footer>
+						<script type="text/javascript">
+							var date = '23/06/2019';
+							var date2 = '01/07/2019';
+						</script>
+						<p>
+						Creation on :
+						<script type="text/javascript">
+						document.write(date)
+						</script>
+						</p>
+						<p>
+						The Last modified date is:
+						<script type="text/javascript">
+						document.write(date2)
+						</script>
+						</p>
+					Copyright &copy; 2019 BookieStore<br>
+					<br><b>Disclaimer:</b> Materials such as images,and book synopses on this website do not belong to Bookie Store.<br>
+					These materials are obtained from the Internet for assignment purpose only. 
+				</footer>
+	
+</body>
+</html>
+

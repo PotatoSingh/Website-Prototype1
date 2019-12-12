@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+	<title>Romance</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	body,html{height:100%
+			  margin:0;
+			  font-size:16px;
+			  font-family:"Lato",sans-serif;
+			  font-weight:400;
+			  line-height:1.8em;
+			  color:#666;
+			}
+
+	.ping1{background-image:url(images/Draw.jpg);
+		   min-height:1000px;
+		   position:relative;
+		   background-size: cover;
+		   background-repeat: no-repeat;
+		   background-position:center;
+		   background-attachment:fixed;
+
+
+	}
+
+	.ping2{background-image:url(images/RRose.jpg);
+		   min-height:800px;
+		   position:relative;
+		   background-size:cover;
+		   background-repeat: no-repeat;
+		   background-attachment:fixed;
+
+	}
+
+	.border{font-family: FreeMono;
+			color:#DCDCDC;
+			text-align: center;
+			font-size:40px;
+			position: absolute;
+			font-weight:bold;
+  			text-shadow:
+   			-1px -1px 0 #000,  
+   			1px -1px 0 #000,
+   			-1px 1px 0 #000,
+     		1px 1px 0 #000;
+			top: 28%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			opacity:0.90;
+			animation: type 1.5s steps(30);
+			overflow:hidden;
+			white-space:nowrap ;
+	
+
+	}
+
+	/*specifies animation code*/
+	@keyframes type{
+		0%{
+			width:0ch;
+		}
+		100%{
+			width:30ch;
+		}
+	}
+
+	.main, .nav{margin:auto;
+		   		margin-right:10px;
+		   		font-family:'Georgia';
+	}
+
+
+
+	.main ul{list-style-type:none;
+			float: right;
+			margin-top: 25px;
+			margin-right: 15px;
+
+	}
+
+	.main ul li, .nav ul li{display: inline-block;
+
+	}
+
+	.main ul li a{text-decoration: none;
+		    	  color: white;
+		    	  padding: 5px 20px;
+		    	  border: 1px solid white;
+		    	  transition:0.6s ease;
+	}
+
+
+	.nav ul li a{text-decoration: none;
+		    	 color: black;
+		    	 padding: 5px 20px;
+		    	 border: 1px solid black;
+		    	 transition:0.6s ease;
+	}
+
+	/*color change when mouse over*/
+	.main ul li a:hover{background-color:white;
+		          	   color:black;
+	}
+
+	/*color change when mouse over*/
+	.nav ul li a:hover{background-color:black;
+		          	   color:white;
+	}
+
+
+	.nav ul{list-style-type:none;
+			text-align:center;
+			margin-top: 5.8px;
+	}
+
+	.outer{margin: 16px;
+	       padding: auto;
+	       text-align: center;
+    }
+
+	.allbooks{display:inline-block;
+			  height: 320px;
+			  background-color:white;
+			  color: black;
+			  padding: 10px;
+	}
+
+	/color change when mouse over/
+	.allbooks:hover{background-color:#696969;
+					color: pink;
+	}
+
+
+	.bookitem{display: inline-block;
+			  margin: 20px;
+			  text-align: center;
+	}
+
+	img{width: auto;
+		min-width: 133px;
+		height: 200px;
+	}
+
+	/* The modal's background */
+	.bookeg{visibility: hidden;
+			opacity: 0;
+			position: fixed;
+			z-index: 1;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: black;
+			background-color: rgba(0,0,0,0.4);
+	}
+
+	/* Display the modal when targeted */
+	.bookeg:target{visibility: visible;
+				   opacity: 1;
+	}
+
+	/* The modal box */
+	.bookdialog{margin: auto;
+				padding: 20px;
+				background-color: black;
+				border: 1px solid;
+				border-style: ridge;
+				width: 60%;
+				position: relative;
+				-webkit-transition: all 5s ease-in-out;
+				-moz-transition: all 5s ease-in-out;
+				-o-transition: all 5s ease-in-out;
+				transition: all 5s ease-in-out;
+	}
+
+	.bookdialog{position: absolute;
+				top: 20px;
+			    right: 270px;
+			    transition: all 200ms;
+				font-size: 30px;
+				font-weight: bold;
+				text-decoration: none;
+	            color: white;
+	}
+
+	
+	.bookcontent{overflow: auto;
+				 font-size: 15pt;
+				 
+	}
+
+	.bookheader{padding: 2px 16px;
+				background-color:#fddbe0;
+				color: black;
+				box-sizing: border-box;}
+
+	.booktitle{font-size: 17pt;
+			   font-family: Times New Roman;
+			   font-weight: bold;
+	}
+
+	.Author{font-size: 14pt;
+			font-style: italic;
+			font-family: Times New Roman;
+	}
+
+	.booksummary{padding: 2px 16px;
+				 text-align: justify;
+				 font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+				 color: white;
+    }
+
+    .section{text-align:center;
+    	     padding: 5px 80px;
+    }
+
+ 
+
+    .section-dark{background-color:#282e34;
+    			  color:#ddd;
+    }
+
+	.close{color:#ccc;
+    	   float:right;
+    	   font-size:30px;
+    }
+
+    /*color changed when mouse over*/
+    .close:hover{color:#000;
+    			 text-decoration: none;
+    			 cursor:pointer;
+    }
+
+    /*general styling for button*/
+     button{
+		background-color: #fddbe0;
+            color:black;
+            text-align: center; 
+            display:inline-block;
+            font-size:20px;
+			font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	}
+
+
+</style>
+</head>
+<body>
+	<div class="ping1">
+		<div class="ptext">
+			<span class="border">
+				“You know you're in love when you can't<br><br> fall asleep because reality is finally better <br><br> than your dreams.”― Dr. Seuss
+			</span>
+		</div>
+
+		<div class="main">
+			<ul>
+				<li><a href="home.html">Home</a></li>
+				<li><a href="book.html">Books</a></li>
+				<li><a href="bookings.php">Bookings</a></li>
+				<li><a href="login.php">Log In</a></li>
+				<li><a href="signup.php">Sign Up</a></li>
+				<li><a href="termsofuse.html">Terms of Use</a></li>
+				<li><a href="about.html">About Us</a></li>
+				<li><a href="contactus.php">Contact Us</a></li>
+				<li><a href="faq.html">FAQ</a></li>
+				</ul>
+  		</div>
+	</div>
+
+	<section class="sectionsection-light">
+		<div class="nav">
+			<ul>
+				<li><a href="book.html">Action/Mystery</a></li>
+				<li><a href="Fantasy.html">Fantasy</a></li>
+				<li><a href="Romance.html">Romance</a></li>
+				<li><a href="Children.html">Children</a></li>
+				<li><a href="Horror.html">Horror</a></li>
+				<li><a href="Sci-Fi.html">Sci-Fi</a></li>
+			</ul>
+		</div>
+
+	<div class="outer">
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Love" id="Love-label">
+			<div class="bookitem">
+				<div>
+					<img src="images\Love.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Field Notes on Love </h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Love">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Love-label">&times;</a>
+						<p class="booktitle">Field Notes on Love  </p>
+						<p class="Author">By Jennifer E. Smith</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Hugo just got dumped – right before he was supposed to take a cross-country train trip with his girlfriend. Of course, the ticket is nonrefundable and nontransferable. So, what else can he do but try to find another “Margaret Campbell” to replace his ex? Mae and Hugo have no clue what’s in store for them – this one sounds adorable and hilarious!<button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#DNA" id="DNA-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\DNA.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The DNA of You and Me</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="DNA">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#DNA-label">&times;</a>
+						<p class="booktitle">The DNA of You and Me</p>
+						<p class="Author">By Andrea Rothman</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Justin hires Emily to work in his lab on his olfactory research studying how smells work. What she doesn’t know is that he has competing scientists in the lab working to disprove her theories. As their relationship evolves, it’s only a matter of time before Emily finds out the truth. Can she reconcile the scientific facts with what she feels in her heart? <button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div> 
+		<!-- Modal ends --> 
+
+		<!-- Button trigger modal --> 
+	 	<a class="allbooks"  href="#Before" id="Before-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Before.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Me Before You</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Before">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Before-label">&times;</a>
+						<p class="booktitle">Me Before You</p>
+						<p class="Author">By Jojo Moyes</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						They had nothing in common until love gave them everything to lose . . .
+						Louisa Clark is an ordinary girl living an exceedingly ordinary life—steady boyfriend, close family—who has barely been farther afield than their tiny village. She takes a badly needed job working for ex–Master of the Universe Will Traynor, who is wheelchair bound after an accident. Will has always lived a huge life—big deals, extreme sports, worldwide travel—and now he’s pretty sure he cannot live the way he is.
+						Will is acerbic, moody, bossy—but Lou refuses to treat him with kid gloves, and soon his happiness means more to her than she expected. When she learns that Will has shocking plans of his own, she sets out to show him that life is still worth living.
+						A Love Story for this generation and perfect for fans of John Green’s The Fault in Our Stars, Me Before You brings to life two people who couldn’t have less in common—a heartbreakingly romantic novel that asks, What do you do when making the person you love happy also means breaking your own heart? <button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Notebook" id="Notebook-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Notebook.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Notebook</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Notebook">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Notebook-label">&times;</a>
+						<p class="booktitle">The Notebook</p>
+						<p class="Author">By Nicholas Sparks</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Every so often a love story so captures our hearts that it becomes more than a story-it becomes an experience to remember forever. The Notebook is such a book. It is a celebration of how passion can be ageless and timeless, a tale that moves us to laughter and tears and makes us believe in true love all over again... 
+						At thirty-one, Noah Calhoun, back in coastal North Carolina after World War II, is haunted by images of the girl he lost more than a decade earlier. At twenty-nine, socialite Allie Nelson is about to marry a wealthy lawyer, but she cannot stop thinking about the boy who long ago stole her heart. Thus begins the story of a love so enduring and deep it can turn tragedy into triumph, and may even have the power to create a miracle...<button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Man" id="Man-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Man.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>This Man</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Man">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Man-label">&times;</a>
+						<p class="booktitle">This Man </p>
+						<p class="Author">By Jodi Ellen Malpas</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Young interior designer Ava O'Shea has no idea what awaits her at the Manor. A run-of-the-mill consultation with a stodgy country gent seems likely, but what Ava finds instead is Jesse Ward--a devastatingly handsome, utterly confident, pleasure-seeking playboy who knows no boundaries. Ava doesn't want to be attracted to this man, and yet she can't control the overwhelming desire that he stirs in her. She knows that her heart will never survive him and her instinct is telling her to run, but Jesse is not willing to let her go. He wants her and is determined to have her.<button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	  
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#O" id="O-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\O.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Story of O</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="O">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#O-label">&times;</a>
+						<p class="booktitle">Story of O</p>
+						<p class="Author">By Pauline Réage</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						How far will a woman go to express her love? In this exquisite novel of passion and desire, the answer emerges through a daring exploration of the deepest bonds of sensual domination. “O” is a beautiful Parisian fashion photographer, determined to understand and prove her consuming devotion to her lover, René, through complete submission to his every whim, his every desire.
+						It is a journey of forbidden, dangerous choices that sweeps her through the secret gardens of the sexual underground. From the inner sanctum of a private club where willing women are schooled in the art of subjugation to the excruciating embraces of René’s friend Sir Stephen, O tests the outermost limits of pleasure. For as O discovers, true freedom lies in her pure and complete willingness to do anything for love.<button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+        <a class="allbooks"  href="#Fault" id="Fault-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Fault.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Fault In Our Stars</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Fault">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Fault-label">&times;</a>
+						<p class="booktitle">The Fault In Our Stars</p>
+						<p class="Author">By John Green</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Hazel Grace Lancaster has been living with cancer for three of her seventeen years of life. Despite this, she is a girl with a vibrant mind, biting wit, and incredible empathy for the position into which she puts her parents of having to care for her. Her cancer began as thyroid cancer but spread to her lungs, causing her to need to breathe oxygen from a tank at all times throughout the day. She attends a support group at a church; there, she meets a friend named Isaac and a romantic interest named Augustus. Augustus has been in remission after losing his leg some years prior, so Hazel hesitates in starting a relationship with him, not wanting to hurt him if her illness takes another turn for the worse. She introduces Augustus to her favorite book, and he forms a plan in which they will travel to Amsterdam together (using the "Wish" given to him by a foundation for children with cancer) to meet the reclusive and mysterious author and find out what happens after the book's end. They are able to take this trip, but when they arrive to meet the author he is drunk and surly. At the end of the trip, Augustus reveals to Hazel that his cancer has come back and is much worse than the previous time. They return home and Hazel stays by his side until his death. The author attends Augustus's funeral and tries to apologize to Hazel; she realizes that his book, which is about a young girl with cancer, was based on his daughter who died. Hazel copes with Augustus's death, comforting herself with the strength of her family and a letter about her that Augustus sent to the author before his death.<button onclick="location.href='bookings.php'"> Rent now!</button> </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	 
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Twilight" id="Twilight-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Twilight.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Twilight</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Twilight">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Twilight-label">&times;</a>
+						<p class="booktitle">Twilight</p>
+						<p class="Author">By Stephenie Meyer</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Twilight tells the story of Bella Swan and the vampire she falls in love with, Edward Cullen. Bella moves to the small and rainy town of Forks, Washington, to live with her father after her mother remarries. She hates the rain, but at least she fits in better in Forks than she did in her huge high school in Phoenix, Arizona.
+						On her first day of school she sees Edward Cullen, one of a group of five students, all of whom seem inhumanely beautiful and aloof toward the rest of the school. Bella is hypnotized by Edward’s good looks, but for some reason, his first response to her is incredibly negative, and she even overhears him trying to switch out of the biology class they have together. He slowly begins to become less hostile, although he warns her that it would be better for her to stay away.
+						One day, when Bella is almost crushed by an out of control minivan, he saves her life. She cannot quite understand how he did it, though. Right before the crash, she saw him across the parking lot from her.
+						When some of the students take a trip to the beach, Bella meets Jacob Black, the son of her father’s good friend Billy Black and a member of the La Push reservation. She gets Jacob to explain why the Cullens won’t come to La Push, and he tells her it is because of some old legends that his people have that the Cullens are vampires, and while they do not feed on humans, they are still not welcome on the reservation.Bella suspects that this may actually be true.<button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Act" id="Act-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Act.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Act Like It</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+	 	<div class="bookeg" id="Act">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Act-label">&times;</a>
+						<p class="booktitle">Act Like It</p>
+						<p class="Author">By LUCY PARKER</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Richard Troy used to be the hottest actor in London, but the only thing firing up lately is his temper. We all love to love a bad boy, but Richard’s antics have made him Enemy Number One, breaking the hearts of fans across the city.
+						Have the tides turned? Has English rose Lainie Graham made him into a new man?
+						Sources say the mismatched pair has been spotted at multiple events, arm in arm and hip to hip. From fits of jealousy to longing looks and heated whispers, onlookers are stunned by this blooming romance.Could the rumors be right? Could this unlikely romance be the real thing? Or are these gifted stage actors playing us all?<button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	  
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Last" id="Last-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Last.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Last Song </h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+	 	<div class="bookeg" id="Last">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Last-label">&times;</a>
+						<p class="booktitle">The Last Song</p>
+						<p class="Author">By Nicholas Sparks</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Seventeen year-old Veronica “Ronnie” Miller’s life was turned upside-down when her parents divorced and her father moved from New York City to Wilmington, North Carolina. Three years later, she remains angry and alienated from her parents, especially her father… until her mother decides it would be in everyone’s best interest if she spent the summer in Wilmington with him. Ronnie’s father, a former concert pianist and teacher, is living a quiet life in the beach town, immersed in creating a work of art that will become the centerpiece of a local church. The tale that unfolds is an unforgettable story about love in its myriad forms – first love, the love between parents and children – that demonstrates, as only a Nicholas Sparks novel can, the many ways that deeply felt relationships can break our hearts… and heal them.<button onclick="location.href='bookings.php'"> Rent now!</button>
+						</p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		 <!-- Modal ends -->
+	 </div> 
+	</section>
+
+	<div class="ping2">
+		<div class="ptext">
+			<span class="border">
+				"And I'd choose you; in a hundred<br><br> lifetimes, in a hundred worlds, in any<br><br> version of reality, I'd find you and I'd <br><br>choose you." — Kiersten White,<br><br>The Chaos of Stars
+			</span>
+		</div>
+	</div>
+
+	<section class="section section-dark">
+			<footer>
+					<script type="text/javascript">
+						var date = '23/06/2019';
+						var date2 = '01/07/2019';
+					</script>
+					<p>
+					Creation on :
+					<script type="text/javascript">
+					document.write(date)
+					</script>
+					</p>
+					<p>
+					The Last modified date is:
+					<script type="text/javascript">
+					document.write(date2)
+					</script>
+					</p>
+				Copyright &copy; 2019 BookieStore<br>
+				<br><b>Disclaimer:</b> Materials such as images,and book synopses on this website do not belong to Bookie Store.<br>
+				These materials are obtained from the Internet for assignment purpose only. 
+			</footer>
+	</section>
+
+
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+<title>Action/Mystery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<style>
+	body,html{height:100%
+			  margin:0;
+			  font-size:16px;
+			  font-family:"Lato",sans-serif;
+			  font-weight:400;
+			  line-height:1.8em;
+			  color:#666;
+			}
+
+	.ping1{background-image:url(images/MIB.jpg);
+		   min-height:1000px;
+		   position:relative;
+		   background-size: cover;
+		   background-repeat: no-repeat;
+		   background-position:center;
+		   background-attachment:fixed;
+
+	}
+
+	.ping2{background-image:url(images/MIB1.jpg);
+		   min-height:800px;
+		   position:relative;
+		   background-size:cover;
+		   background-repeat: no-repeat;
+		   opacity: 0.80;
+		   background-attachment:fixed;
+
+	}
+
+	.border{font-family: FreeMono;
+			color:#DCDCDC;
+			text-align: center;
+			font-size:40px;
+			position: absolute;
+			font-weight:bold;
+  			text-shadow:
+   			-1px -1px 0 #000,  
+   			1px -1px 0 #000,
+   			-1px 1px 0 #000,
+     		1px 1px 0 #000;
+			top: 28%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			opacity: 0.90;
+			animation: type 1.5s steps(30);
+			overflow:hidden;
+			white-space:nowrap ;
+	
+
+	}
+
+	/*specifies animation code*/
+	@keyframes type{
+		0%{
+			width:0ch;
+		}
+		100%{
+			width:30ch;
+		}
+	}
+
+
+	.main, .nav{margin:auto;
+		   		margin-right:10px;
+		   		font-family:'Georgia';
+		   		
+	}
+
+
+
+	.main ul{list-style-type:none;
+			float: right;
+			margin-top: 25px;
+			margin-right: 15px;
+
+	}
+
+	.main ul li, .nav ul li{display: inline-block;
+
+	}
+
+	.main ul li a, .nav ul li a{text-decoration: none;
+		    					color: black;
+		    					padding: 5px 20px;
+		    					border: 1px solid black;
+		    					
+	}
+
+	/*color change when mouse over*/
+	.main ul li a:hover, .nav ul li a:hover{background-color:black;
+		          							color:white;
+	}
+
+	.nav ul{list-style-type:none;
+			text-align:center;
+			margin-top: 5.8px;
+	}
+
+	.outer{margin: 16px;
+	       padding: auto;
+	       text-align: center;
+    }
+
+	.allbooks{display:inline-block;
+			  height: 320px;
+			  background-color:white;
+			  color: black;
+			  padding: 10px;
+	}
+	/*color change when mouse over*/
+	.allbooks:hover{background-color:#696969;
+					color: pink;
+	}
+
+
+	.bookitem{display: inline-block;
+			  margin: 20px;
+			  text-align: center;
+	}
+
+	img{width: auto;
+		min-width: 133px;
+		height: 200px;
+	}
+
+	/* The modal's background */
+	.bookeg{visibility:hidden;
+			opacity: 0;
+			position: fixed;
+			z-index: 1;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: black;
+			background-color: rgba(0,0,0,0.4);
+	}
+
+	/* Display the modal when targeted */
+	.bookeg:target{visibility: visible;
+				   opacity: 1;
+	}
+
+	/* The modal box */
+	.bookdialog{margin: auto;
+				padding: 20px;
+				background-color: black;
+				border: 1px solid;
+				border-style: ridge;
+				width: 60%;
+				position: relative;
+				-webkit-transition: all 5s ease-in-out;
+				-moz-transition: all 5s ease-in-out;
+				-o-transition: all 5s ease-in-out;
+				transition: all 5s ease-in-out;
+	}
+
+	.bookdialog{position: absolute;
+				top: 20px;
+				right: 270px;
+				transition: all 200ms;
+				font-size: 30px;
+				font-weight: bold;
+				text-decoration: none;
+	            color: white;
+	}
+
+
+	.bookcontent{overflow: auto;
+				 font-size: 15pt;
+				 
+	}
+
+	.bookheader{padding: 2px 16px;
+				background-color:#fddbe0;
+				color: black;
+				box-sizing: border-box;}
+
+	.booktitle{font-size: 17pt;
+			   font-family: Times New Roman;
+			   font-weight: bold;
+	}
+
+	.Author{font-size: 14pt;
+			font-style: italic;
+			font-family: Times New Roman;
+	}
+
+	.booksummary{padding: 2px 16px;
+				 text-align: justify;
+				 font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+				 color: white;
+    }
+
+    .section{text-align:center;
+    	     padding: 5px 80px;
+    }
+
+
+
+    .section-dark{background-color:#282e34;
+    			  color:#ddd;
+    }
+
+    .close{color:#ccc;
+    	   float:right;
+    	   font-size:30px;
+    }
+
+    /*color changed when mouse over*/
+    .close:hover{color:#000;
+    			 text-decoration: none;
+    			 cursor:pointer;
+    }
+
+    /*general styling for button*/
+    button{
+		background-color: #fddbe0;
+        color:black;
+        text-align: center; 
+        display:inline-block;
+        font-size:20px;
+		font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	}
+
+	
+</style>
+</head>
+<body>
+	<div class="ping1">
+		<div class="ptext">
+			<span class="border">
+				“A good friend will help you move, <br><br>but a true friend will help you <br><br> move a body.”  ― Steven J. Daniels,<br><br> Weeds in The Garden of Love
+			</span>
+		</div>
+
+		<div class="main">
+			<ul>
+				<li><a href="home.html">Home</a></li>
+				<li><a href="book.html">Books</a></li>
+				<li><a href="bookings.php">Bookings</a></li>
+				<li><a href="login.php">Log In</a></li>
+				<li><a href="signup.php">Sign Up</a></li>
+				<li><a href="termsofuse.html">Terms of Use</a></li>
+				<li><a href="about.html">About Us</a></li>
+				<li><a href="contactus.php">Contact Us</a></li>
+				<li><a href="faq.html">FAQ</a></li>
+				</ul>
+  		</div>
+	</div>
+
+	<section class="sectionsection-light">
+		<div class="nav">
+			<ul>
+				<li><a href="book.html">Action/Mystery</a></li>
+				<li><a href="Fantasy.html">Fantasy</a></li>
+				<li><a href="Romance.html">Romance</a></li>
+				<li><a href="Children.html">Children</a></li>
+				<li><a href="Horror.html">Horror</a></li>
+				<li><a href="Scientific.html">Scientific</a></li>
+			</ul>
+		</div>
+
+	<div class="outer">
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#TheSecretPlace" id="TheSecretPlace-label">
+			<div class="bookitem">
+				<div>
+					<img src="images\Tana French.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Secret Place</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+
+		<!-- Modal -->
+		<div class="bookeg" id="TheSecretPlace">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#TheSecretPlace-label">&times;</a>
+						<p class="booktitle">The Secret Place</p>
+						<p class="Author">By Tana French</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						When a boy turns up murdered at an all-girls boarding school, the only lead is a note found tacked to a bulletin board that reads "I know who killed him." If that's not weird enough, the girl who brings it to detective Stephen Moran is the lead detective's daughter. Clues start leading back to Holly and her group of friends, as the detectives try to untangle the web of relationships that lead back to the mysterious body.<button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#BeforeIGoToSleep" id="BeforeIGoToSleep-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Before I Go To Sleep.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Before I Go To Sleep</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="BeforeIGoToSleep">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#BeforeIGoToSleep-label">&times;</a>
+						<p class="booktitle">Before I Go To Sleep</p>
+						<p class="Author">By S.J.Watson</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Christine wakes up every morning to find out she has amnesia and has to rely on those around her to help piece her life together. Unable to store new memories, how can Christine know what's real, what isn't, and who she should trust? This psychological thriller will creep into your imagination and stay there.<button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>  
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#BigLittleLies" id="BigLittleLies-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Big Little Lies.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Big Little Lies</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+
+		<!-- Modal -->
+		<div class="bookeg" id="BigLittleLies">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#BigLittleLies-label">&times;</a>
+						<p class="booktitle">Big Little Lies</p>
+						<p class="Author">By Liane Moriarty</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Now an award-winning HBO series, this arresting story explores the lives of three women each grappling with their own complicated families, and the politics that arise in schoolyards and at PTA meetings. When someone turns up dead after a school trivia event, they're forced to reckon with their own demons, and those that have come to roost in their own backyards. Fiercely funny, bone-chillingly scary, and totally unforgettable, read this before you watch the show's upcoming second season.<button onclick="location.href=''"bookings.php> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+	   <!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#FreeFall" id="FreeFall-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Freefall.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Free Fall</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+
+		<!-- Modal -->
+		<div class="bookeg" id="FreeFall">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#FreeFall-label">&times;</a>
+						<p class="booktitle">Free Fall</p>
+						<p class="Author">By Jessica Barry</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						A private plane crashes in the Colorado Rockies, and everyone assumes Allison is dead. Except, that is, her estranged mother Maggie. As Allison fights her way across the treacherous mountains toward survival, Maggie works to uncover the truth behind her daughter's mysterious life since they lost touch. Told from the perspectives of both women, this is a mother-daughter story you won't be able to put down. <button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#JaneSteele" id="JaneSteele-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Jane Steele.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Jane Steele</h4>
+				</div>
+			</div>
+		</a>
+
+		<div class="bookeg" id="JaneSteele">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#JaneSteele-label">&times;</a>
+						<p class="booktitle">Jane Steele</p>
+						<p class="Author">By Lyndsay Faye</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						This imaginative book recasts Jane Eyre as a gutsy serial killer who takes a governess position at Highgate House, her former home. While there, she falls in love with the house's master, Mr. Thornfield. But as she learns more about his darkness, she has to decide: can she possess him — all of him — without revealing her own murderous past? You'll never look at the Bronte masterpiece the same after this one.<button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Button trigger modal ends -->
+	  
+		<!-- Modal -->
+	 	<a class="allbooks"  href="#GoneGirl" id="GoneGirl-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\gone girl.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Gone Girl</h4>
+				</div>
+			</div>
+		</a>
+
+        <div class="bookeg" id="GoneGirl">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#GoneGirl-label">&times;</a>
+						<p class="booktitle">Gone Girl</p>
+						<p class="Author">By Gillian Flynn</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						When Amy Dunn disappears on her fifth wedding anniversary, her husband Nick quickly becomes suspect number one. And even though he maintains his innocence as pressure from the media and police mounts — not to mention Amy's parents — he also gets more and more evasive. This one's a real head-scratcher, but the payoff is just as great as the journey. <button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	
+		<!-- Button trigger modal -->
+        <a class="allbooks"  href="#StillMine" id="StillMine-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Still Mine.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Still Mine</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+
+		<!-- Modal -->
+        <div class="bookeg" id="StillMine">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#StillMine-label">&times;</a>
+						<p class="booktitle">Still Mine</p>
+						<p class="Author">By Amy Stuart</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						When Clare turns up in the small town of Blackmore asking about Shayna, a local girl who's disappeared, it raises some major red flags. But Clare's not the only one who's hiding something. As she digs into the circumstances surrounding Shayna's disappearance, she has to confront her own demons. The rabbit hole goes deep in this one, and it's easy to lose hours in it. <button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	 
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#TheDinner" id="TheDinner-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\The Dinner.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Dinner</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+
+		<!-- Modal -->
+        <div class="bookeg" id="TheDinner">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#TheDinner-label">&times;</a>
+						<p class="booktitle">The Dinner</p>
+						<p class="Author">By Herman Koch</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Two couples sit down to a meal together, but there's fire under their idle chit-chat. Their teenage sons are implicated in a horrible crime, one that's shattered the safety of each family. In this novel that's wound as tight as a violin string, you'll feel your own tension rise as dessert approaches, and the knives come out just under the surface of what passes for polite conversation.<button onclick="location.href='bookings.php'"> Rent now!</button>  
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#TheCuckoo'sCalling" id="TheCuckoo'sCalling-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\The Cuckoo's Calling.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Cuckoo's Calling</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+
+		<!-- Modal -->
+	 	<div class="bookeg" id="TheCuckoo'sCalling">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#TheCuckoo'sCalling-label">&times;</a>
+						<p class="booktitle">The Cuckoo's Calling</p>
+						<p class="Author">By Robert Galbraith</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Calling all Harry Potter fans, try this mystery series written by J.K. Rowling under the pseudonym Robert Galbraith. The first installment introduces struggling private investigator Cormoran Strike, whose life changes completely when he meets John Bristow, the brother of the late Lula Landry, or Cuckoo. She plunged to her death in what the cops ruled a suicide, but John smells a rat. As Strike investigates, he gets sucked into the world of the super-rich, and all of the seduction and delusion that comes with it. <button onclick="location.href='bookings.php'"> Rent now!</button> 
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+	    <!-- Button trigger modal -->
+		<a class="allbooks"  href="#TheSuspect" id="TheSuspect-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\The Suspect.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Suspect</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+
+		<!-- Modal -->
+	 	<div class="bookeg" id="TheSuspect">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#TheSuspect-label">&times;</a>
+						<p class="booktitle">The Suspect</p>
+						<p class="Author">By Fiona Barton</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						When two teenage girls go missing on a trip to Thailand, journalist Kate Waters is all over the case. She always wants to be the first to the story, and the first to solve the mystery. But this time, it's personal. While reporting on the story, she can't help but think of her own son who she hasn't seen since he left home to travel two years ago. Danger comes closer to home than anyone expects, in this thriller that will especially keep parents awake at night. <button onclick="location.href='bookings.php'"> Rent now!</button>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	 </div> 
+	 
+	</section>
+
+	<div class="ping2">
+		<div class="ptext">
+			<span class="border">
+				There Are Worse Crimes Than Burning<br><br> Books One of Them is<br><br> NOT READING THEM<br><br> -RAY BRADBURY
+			</span>
+		</div>
+	</div>
+
+	<section class="section section-dark">
+			<footer>
+					<script type="text/javascript">
+						var date = '23/06/2019';
+						var date2 = '01/07/2019';
+					</script>
+					<p>
+					Creation on :
+					<script type="text/javascript">
+					document.write(date)
+					</script>
+					</p>
+					<p>
+					The Last modified date is:
+					<script type="text/javascript">
+					document.write(date2)
+					</script>
+					</p>
+				Copyright &copy; 2019 BookieStore<br>
+				<br><b>Disclaimer:</b> Materials such as images,and book synopses on this website do not belong to Bookie Store.<br>
+				These materials are obtained from the Internet for assignment purpose only. 
+			</footer>
+	</section>
+
+
+</body>
+</html>

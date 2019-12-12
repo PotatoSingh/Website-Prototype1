@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+	<title>Action/Mystery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	body,html{height:100%
+			  margin:0;
+			  font-size:16px;
+			  font-family:"Lato",sans-serif;
+			  font-weight:400;
+			  line-height:1.8em;
+			  color:#666;
+			}
+
+	.ping1{background-image:url(images/castle.jpg);
+		   min-height:1000px;
+		   position:relative;
+		   background-size: cover;
+		   background-repeat: no-repeat;
+		   background-position:center;
+		   background-attachment:fixed;
+
+
+	}
+
+	.ping2{background-image:url(images/space.jpg);
+		   min-height:800px;
+		   position:relative;
+		   background-size:cover;
+		   background-repeat: no-repeat;
+		   opacity: 0.80;
+		   background-attachment:fixed;
+
+	}
+
+	.border{font-family: FreeMono;
+			color:#DCDCDC;
+			text-align: center;
+			font-size:40px;
+			position: absolute;
+			font-weight:bold;
+  			text-shadow:
+   			-1px -1px 0 #000,  
+   			1px -1px 0 #000,
+   			-1px 1px 0 #000,
+     		1px 1px 0 #000;
+			top: 28%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			opacity:0.90;
+			animation: type 1.5s steps(30);
+			overflow:hidden;
+			white-space:nowrap ;
+			
+	
+
+	}
+
+	/*specifies animation code*/
+	@keyframes type{
+		0%{
+			width:0ch;
+		}
+		100%{
+			width:30ch;
+		}
+	}
+
+	.main, .nav{margin:auto;
+		   		margin-right:10px;
+		   		font-family: 'Georgia' ;
+	}
+
+
+
+	.main ul{list-style-type:none;
+			float: right;
+			margin-top: 25px;
+			margin-right: 15px;
+
+	}
+
+	.main ul li, .nav ul li{display: inline-block;
+
+	}
+
+	.main ul li a, .nav ul li a{text-decoration: none;
+		    					color: black;
+		    					padding: 5px 20px;
+		    					border: 1px solid black;
+		    					transition:0.6s ease;
+	}
+
+	/*color change when mouse over*/
+	.main ul li a:hover, .nav ul li a:hover{background-color:black;
+		          							color:white;
+	}
+
+	.nav ul{list-style-type:none;
+			text-align:center;
+			margin-top: 5.8px;
+	}
+
+	.outer{margin: 16px;
+	       padding: auto;
+	       text-align: center;
+    }
+
+	.allbooks{display:inline-block;
+			  height: 320px;
+			  background-color:white;
+			  color: black;
+			  padding: 10px;
+	}
+
+	/*color change when mouse over*/
+	.allbooks:hover{background-color:#696969;
+					color: pink;
+	}
+
+
+	.bookitem{display: inline-block;
+			  margin: 20px;
+			  text-align: center;
+	}
+
+	img{width: auto;
+		min-width: 133px;
+		height: 200px;
+	}
+
+	/* The modal's background */
+	.bookeg{visibility: hidden;
+			opacity: 0;
+			position: fixed;
+			z-index: 1;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: black;
+			background-color: rgba(0,0,0,0.4);
+	}
+
+	/* Display the modal when targeted */
+	.bookeg:target{visibility: visible;
+				   opacity: 1;
+	}
+
+	/* The modal box */
+	.bookdialog{margin: auto;
+				padding: 20px;
+				background-color: black;
+				border: 1px solid;
+				border-style: ridge;
+				width: 60%;
+				position: relative;
+				-webkit-transition: all 5s ease-in-out;
+				-moz-transition: all 5s ease-in-out;
+				-o-transition: all 5s ease-in-out;
+				transition: all 5s ease-in-out;
+	}
+
+	.bookdialog{position: absolute;
+			    top: 20px;
+			    right: 270px;
+			    transition: all 200ms;
+				font-size: 30px;
+				font-weight: bold;
+				text-decoration: none;
+	            color: white;
+	}
+
+	.bookcontent{overflow: auto;
+				 font-size: 15pt;
+				 
+	}
+
+	.bookheader{padding: 2px 16px;
+				background-color:#fddbe0;
+				color: black;
+				box-sizing: border-box;
+	}
+
+	.booktitle{font-size: 17pt;
+			   font-family: Times New Roman;
+			   font-weight: bold;
+	}
+
+	.Author{font-size: 14pt;
+			font-style: italic;
+			font-family: Times New Roman;
+	}
+
+	.booksummary{padding: 2px 16px;
+				 text-align: justify;
+				 font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+				 color: white;
+    }
+
+    .section{text-align:center;
+    	     padding: 5px 80px;
+    }
+
+ 
+
+    .section-dark{background-color:#282e34;
+    			  color:#ddd;
+    }
+
+	.close{color:#ccc;
+    	   float:right;
+    	   font-size:30px;
+    }
+
+    /*color changed when mouse over*/
+    .close:hover{color:#000;
+    			  text-decoration: none;
+    			  cursor:pointer;
+    }
+
+    /*general styling for button*/
+    button{
+		background-color: #fddbe0;
+            color:black;
+            text-align: center; 
+            display:inline-block;
+            font-size:20px;
+			font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	}
+
+
+</style>
+</head>
+<body>
+	<div class="ping1">
+		<div class="ptext">
+			<span class="border">
+				“One day, you will be old enough<br><br> to start reading fairytales again.” <br><br>― C.S. Lewis, The Chronicles of Narnia
+			</span>
+		</div>
+
+		<div class="main">
+			<ul>
+				<li><a href="home.html">Home</a></li>
+				<li><a href="book.html">Books</a></li>
+				<li><a href="bookings.php">Bookings</a></li>
+				<li><a href="login.php">Log In</a></li>
+				<li><a href="signup.php">Sign Up</a></li>
+				<li><a href="termsofuse.html">Terms of Use</a></li>
+				<li><a href="about.html">About Us</a></li>
+				<li><a href="contactus.php">Contact Us</a></li>
+				<li><a href="faq.html">FAQ</a></li>
+				</ul>
+  		</div>
+	</div>
+
+	<section class="sectionsection-light">
+		<div class="nav">
+			<ul>
+				<li><a href="book.html">Action/Mystery</a></li>
+				<li><a href="Fantasy.html">Fantasy</a></li>
+				<li><a href="Romance.html">Romance</a></li>
+				<li><a href="Children.html">Children</a></li>
+				<li><a href="Horror.html">Horror</a></li>
+				<li><a href="Sci-Fi.html">Sci-Fi</a></li>
+			</ul>
+		</div>
+
+	<div class="outer">
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Harry" id="Harry-label">
+			<div class="bookitem">
+				<div>
+					<img src="images\Harry.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Harry Potter and <br>the Philosopher's Stone </h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Harry">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Harry-label">&times;</a>
+						<p class="booktitle">Harry Potter and the Philosopher's Stone </p>
+						<p class="Author">By J.K.Rowling</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Prepare to be spellbound by Jim Kay's dazzling depiction of the wizarding world and much loved characters in this full-colour illustrated hardback edition of the nation's favourite children's book - Harry Potter and the Philosopher's Stone. Brimming with rich detail and humour that perfectly complements J.K. Rowling's timeless classic, Jim Kay's glorious illustrations will captivate fans and new readers alike. 
+
+						When a letter arrives for unhappy but ordinary Harry Potter, a decade-old secret is revealed to him that apparently he's the last to know. His parents were wizards, killed by a Dark Lord's curse when Harry was just a baby, and which he somehow survived. Leaving his unsympathetic aunt and uncle for Hogwarts School of Witchcraft and Wizardry, Harry stumbles upon a sinister mystery when he finds a three-headed dog guarding a room on the third floor. Then he hears of a missing stone with astonishing powers, which could be valuable, dangerous - or both. An incredible adventure is about to begin!<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Fantastic" id="Fantastic-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Fantastic.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Fantastic Beasts and <br>Where to Find Them</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Fantastic">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Fantastic-label">&times;</a>
+						<p class="booktitle">Fantastic Beasts and<br> Where to Find Them</p>
+						<p class="Author">By J.K.Rowling</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						J.K. Rowling's screenwriting debut is captured in this exciting hardcover edition of the Fantastic Beasts and Where to Find Them screenplay. 
+						When Magizoologist Newt Scamander arrives in New York, he intends his stay to be just a brief stopover. However, when his magical case is misplaced and some of Newt's fantastic beasts escape, it spells trouble for everyone...Fantastic Beasts and Where to Find Them marks the screenwriting debut of J.K. Rowling, author of the beloved and internationally bestselling Harry Potter books. Featuring a cast of remarkable characters, this is epic, adventure-packed storytelling at its very best. Whether an existing fan or new to the wizarding world, this is a perfect addition to any reader's bookshelf. <button onclick="location.href='bookings.php'"> Rent now!</button></p>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div> 
+		<!-- Modal ends --> 
+
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Game" id="Game-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Game.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>A Game of Thrones</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Game">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Game-label">&times;</a>
+						<p class="booktitle">A Game of Thrones</p>
+						<p class="Author">By George R. R. Martin</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						The first volume of A Song of Ice and Fire, the greatest fantasy epic of the modern age. GAME OF THRONES is now a major TV series from HBO, starring Sean Bean. Summers span decades. Winter can last a lifetime. And the struggle for the Iron Throne has begun. As Warden of the north, Lord Eddard Stark counts it a curse when King Robert bestows on him the office of the Hand. His honour weighs him down at court where a true man does what he will, not what he must ...and a dead enemy is a thing of beauty. The old gods have no power in the south, Stark's family is split and there is treachery at court. Worse, the vengeance-mad heir of the deposed Dragon King has grown to maturity in exile in the Free Cities. He claims the Iron Throne. <button onclick="location.href='bookings.php'"> Rent now!</button></p> 
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Storm" id="Storm-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Storm.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>A Storm of Swords</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Storm">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Storm-label">&times;</a>
+						<p class="booktitle">A Storm of Swords</p>
+						<p class="Author">By George R. R. Martin</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						The third volume, part two of A SONG OF ICE AND FIRE, the greatest fantasy epic of the modern age. GAME OF THRONES is now a major TV series from HBO, featuring a stellar cast.
+						The Starks are scattered.
+						Robb Stark may be King in the North, but he must bend to the will of the old tyrant Walder Frey if he is to hold his crown. And while his youngest sister, Arya, has escaped the clutches of the depraved Cersei Lannister and her son, the capricious boy-king Joffrey, Sansa Stark remains their captive.
+						Meanwhile, across the ocean, Daenerys Stormborn, the last heir of the Dragon King, delivers death to the slave-trading cities of Astapor and Yunkai as she approaches Westeros with vengeance in her heart. <button onclick="location.href='bookings.php'"> Rent now!</button></p>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Hobbit" id="Hobbit-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Hobbit.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Hobbit </h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Hobbit">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Hobbit-label">&times;</a>
+						<p class="booktitle">The Hobbit </p>
+						<p class="Author">By J. R. R. Tolkien</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						The Hobbit is a tale of high adventure, undertaken by a company of dwarves in search of dragon-guarded gold. A reluctant partner in this perilous quest is Bilbo Baggins, a comfort-loving unambitious hobbit, who surprises even himself by his resourcefulness and skill as a burglar. Encounters with trolls, goblins, dwarves, elves and giant spiders, conversations with the dragon, Smaug, and a rather unwilling presence at the Battle of Five Armies are just some of the adventures that befall Bilbo. Bilbo Baggins has taken his place among the ranks of the immortals of children's fiction. Written by Professor Tolkien for his own children, The Hobbit met with instant critical acclaim when published. <button onclick="location.href='bookings.php'"> Rent now!</button></p>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	  
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Dragon" id="Dragon-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Dragon.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>King's Dragon</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Dragon">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Dragon-label">&times;</a>
+						<p class="booktitle">King's Dragon</p>
+						<p class="Author">By Kate Elliott</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						It begins with civil war....
+
+						For though King Henry still holds the crown of Wendar, his reign has long been contested by his sister Sabella. There are many eager to flock to her banner, and there are ways to make even the most unwilling lord into a weapon pointed at the heart of Henry’s realm.<br> 
+
+						Torn by internal strife, Wendar also faces deadly raids from the north by an inhuman race, the Eika. And now terrifying portents are being seen; old ruins restored to life under the light of the full moon and peopled by the long-vanished Lost Ones; dark spirits walking the land in broad daylight.
+						And suddenly two innocents are about to be thrust into the middle of the conflict. <br>
+
+						Liath, who has spent her early years fleeing from unknown enemies, is a young woman with the power to change the course of history if she can only learn to master her fear and seize what is rightfully hers. <br>
+
+						While Alain, a young man who may find his future in a vision granted by the Lady of Battles, must first unravel the mystery of who he is—whether the bastard son of a noble father, the half-breed child of an elfin lord, the unwanted get of a whore, or the heir to a proud and ancient lineage. For only when he discovers the truth can he accept the destiny for which he was born. <br>
+
+						Liath and Alain, each trapped in a personal struggle for survival, both helplessly being drawn into a far greater battle, a war in which sorcery not swords will determine the final outcome, and the land itself may be irrevocably reshaped by the forces unleashed....<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+        <a class="allbooks"  href="#Clash" id="Clash-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Clash.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>A Clash of Kings</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Clash">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Clash-label">&times;</a>
+						<p class="booktitle">A Clash of Kings</p>
+						<p class="Author">By George R. R. Martin</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						The second volume of A Song of Ice and Fire, the greatest fantasy epic of the modern age. GAME OF THRONES is now a major TV series from HBO, featuring a stellar cast.
+						Throughout Westeros, the cold winds are rising.
+						From the ancient citadel of Dragonstone to the forbidding lands of Winterfell, chaos reigns as pretenders to the Iron Throne of the Seven Kingdoms stake their claims through tempest, turmoil and war.
+						As a prophecy of doom cuts across the sky - a comet the colour of blood and flame - five factions struggle for control of a divided land. Brother plots against brother and the dead rise to walk in the night.
+						Against a backdrop of incest, fratricide, alchemy and murder, the price of glory is measured in blood.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	 
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Narnia" id="Narnia-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Narnia.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Chronicles of Narnia</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Narnia">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Narnia-label">&times;</a>
+						<p class="booktitle">TThe Chronicles of Narnia</p>
+						<p class="Author">By C.S.Lewis</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						TDon't miss one of America's top 100 most-loved novels, selected by PBS's The Great American Read.
+						Experience all seven tales of C. S. Lewis's classic fantasy series, The Chronicles of Narnia, in one impressive paperback volume!
+						Epic battles between good and evil, fantastic creatures, betrayals, heroic deeds, and friendships won and lost all come together in this unforgettable world, which has been enchanting readers of all ages for over sixty years.
+						This edition presents the seven books--The Magician's Nephew; The Lion, the Witch and the Wardrobe; The Horse and His Boy; Prince Caspian; The Voyage of the Dawn Treader; The Silver Chair; and The Last Battle--unabridged and arranged in C. S. Lewis's preferred order. Each chapter is graced with an illustration by the original artist, Pauline Baynes. <button onclick="location.href='bookings.php'"> Rent now!</button></p>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Sword" id="Sword-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Sword.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Glass Sword</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+	 	<div class="bookeg" id="Sword">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Sword-label">&times;</a>
+						<p class="booktitle">Glass Sword</p>
+						<p class="Author">By Victoria Aveyard</p>
+					</div>
+					<div>
+						<p class="booksummary">
+						The second novel in the #1 bestselling RED QUEEN series by Victoria Aveyard.
+						I WAS BORN TO KILL A KING, TO END A REIGN OF TERROR BEFORE IT CAN TRULY BEGIN.
+						If there's one thing Mare Barrow knows, it's that she's different.
+						Mare's blood is red - the colour of common folk - but her Silver ability, the power to control lightning, has turned her into a weapon that the royal court wants to control.
+						Pursued by the vengeful Silver king, Mare sets out to find and recruit other Red-and-Silver fighters to join the rebellion.
+						But Mare finds herself on a deadly path, at risk of becoming exactly the kind of monster she is trying to defeat. Will she shatter under the weight of the lives that are the cost of rebellion? Or have treachery and betrayal hardened her forever?<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+					    </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	  
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Muse" id="Muse-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Muse.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Muse of Nightmares </h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+	 	<div class="bookeg" id="Muse">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Muse-label">&times;</a>
+						<p class="booktitle">Muse of Nightmares </p>
+						<p class="Author">By Laini Taylor/p>
+					</div>
+					<div>
+						<p class="booksummary">
+						Sarai has lived and breathed nightmares since she was six years old. 
+						She believed she knew every horror, and was beyond surprise. 
+						She was wrong. 
+						In the wake of tragedy, neither Lazlo nor Sarai are who they were before. One a god, the other a ghost, they struggle to grasp the new boundaries of their selves as dark-minded Minya holds them hostage, intent on vengeance against Weep.
+						Lazlo faces an unthinkable choice - save the woman he loves, or everyone else? - while Sarai feels more helpless than ever. But is she? Sometimes, only the direst need can teach us our own depths, and Sarai, the muse of nightmares, has not yet discovered what she's capable of.
+						As humans and godspawn reel in the aftermath of the citadel's near fall, a new foe shatters their fragile hopes, and the mysteries of the Mesarthim are resurrected: Where did the gods come from, and why? What was done with the thousands of children born in the citadel nursery? And most important of all, as forgotten doors are opened and new worlds revealed: must heroes always slay monsters, or is it possible to save them instead?
+						Love and hate, revenge and redemption, destruction and salvation all clash in this gorgeous sequel to the New York Times bestseller, Strange the Dreamer.
+						'I was afraid to read too quickly because I didn't want it to be over . . . Laini has done something so special with this duology . . . It will leave you changed forever' Samantha Shannon
+						'Coming off a boatload of recognition for that series-starter, the author is promising an even richer read . . . Taylor asks big questions about life and death in the new book, as humans and godspawn reel in the aftermath of the Citadel's near-fall.' Entertainment Weekly<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		 <!-- Modal ends -->
+	 </div> 
+
+	</section>
+
+	<div class="ping2">
+		<div class="ptext">
+			<span class="border">
+				“Fairy tales do not tell children the <br><br>dragons exist. Children already know <br><br>that dragons exist. Fairy tales tell <br><br>children the dragons can be killed.”<br><br> ―G.K. Chesterton
+			</span>
+		</div>
+	</div>
+
+	<section class="section section-dark">
+			<footer>
+					<script type="text/javascript">
+						var date = '23/06/2019';
+						var date2 = '01/07/2019';
+					</script>
+					<p>
+					Creation on :
+					<script type="text/javascript">
+					document.write(date)
+					</script>
+					</p>
+					<p>
+					The Last modified date is:
+					<script type="text/javascript">
+					document.write(date2)
+					</script>
+					</p>
+				Copyright &copy; 2019 BookieStore<br>
+				<br><b>Disclaimer:</b> Materials such as images,and book synopses on this website do not belong to Bookie Store.<br>
+				These materials are obtained from the Internet for assignment purpose only. 
+			</footer>
+	</section>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+	<title>Children</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	body,html{height:100%;
+			  margin:0;
+			  font-size:16px;
+			  font-family:"Lato",sans-serif;
+			  font-weight:400;
+			  line-height:1.8em;
+			  color:#666;
+			}
+
+	.ping1{background-image:url(images/children.jpg);
+		   min-height:1000px;
+		   position:relative;
+		   background-size: cover;
+		   background-repeat: no-repeat;
+		   background-position:center;
+		   background-attachment:fixed;
+	}
+	.ping2{background-image:url(images/childreading.jpg);
+		   min-height:800px;
+		   position:relative;
+		   background-size:cover;
+		   background-repeat: no-repeat;
+		   opacity: 0.80;
+		   background-attachment:fixed;
+	}
+	.border{font-family: FreeMono;
+			color:#DCDCDC;
+			text-align: center;
+			font-size:40px;
+			position: absolute;
+			font-weight:bold;
+  			text-shadow:
+   			-1px -1px 0 #000,  
+   			1px -1px 0 #000,
+   			-1px 1px 0 #000,
+     		1px 1px 0 #000;
+			top: 28%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			opacity:0.90;
+			animation: type 1.5s steps(30);
+			overflow:hidden;
+			white-space:nowrap ;
+			
+	
+	}
+
+	/*specifies animation code*/
+	@keyframes type{
+		0%{
+			width:0ch;
+		}
+		100%{
+			width:30ch;
+		}
+	}
+	.main, .nav{margin:auto;
+		   		margin-right:10px;
+		   		font-family: 'Georgia' ;
+	}
+	.main ul{list-style-type:none;
+			float: right;
+			margin-top: 25px;
+			margin-right: 15px;
+	}
+	.main ul li, .nav ul li{display: inline-block;
+	}
+	.main ul li a, .nav ul li a{text-decoration: none;
+		    					color: black;
+		    					padding: 5px 20px;
+		    					border: 1px solid black;
+		    					transition:0.6s ease;
+	}
+
+	/*color change when mouse over*/
+	.main ul li a:hover, .nav ul li a:hover{background-color:black;
+		          							color:white;
+	}
+	.nav ul{list-style-type:none;
+			text-align:center;
+			margin-top: 5.8px;
+	}
+	.outer{margin: 16px;
+	       padding: auto;
+	       text-align: center;
+    }
+	.allbooks{display:inline-block;
+			  height: 320px;
+			  background-color:white;
+			  color: black;
+			  padding: 10px;
+	}
+
+	/color change when mouse over/
+	.allbooks:hover{background-color:#696969;
+					color: pink;
+	}
+	.bookitem{display: inline-block;
+			  margin: 20px;
+			  text-align: center;
+	}
+	img{width: auto;
+		min-width: 133px;
+		height: 200px;
+	}
+
+	/* The modal's background */
+	.bookeg{visibility: hidden;
+			opacity: 0;
+			position: fixed;
+			z-index: 1;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: black;
+			background-color: rgba(0,0,0,0.4);
+	}
+
+	/* Display the modal when targeted */
+	.bookeg:target{visibility: visible;
+				   opacity: 1;
+	}
+
+	/* The modal box */
+	.bookdialog{margin: auto;
+				padding: 20px;
+				background-color: black;
+				border: 1px solid;
+				border-style: ridge;
+				width: 60%;
+				position: relative;
+				-webkit-transition: all 5s ease-in-out;
+				-moz-transition: all 5s ease-in-out;
+				-o-transition: all 5s ease-in-out;
+				transition: all 5s ease-in-out;
+	}
+	.bookdialog{position: absolute;
+			    top: 20px;
+			    right: 270px;
+			    transition: all 200ms;
+				font-size: 30px;
+				font-weight: bold;
+				text-decoration: none;
+	            color: white;
+	}
+	
+	.bookcontent{overflow: auto;
+				 font-size: 15pt;
+				 
+	}
+	.bookheader{padding: 2px 16px;
+				background-color:#fddbe0;
+				color: black;
+				box-sizing: border-box;
+	}
+
+	.booktitle{font-size: 17pt;
+			   font-family: 'Times New Roman';
+			   font-weight: bold;
+	}
+	.Author{font-size: 14pt;
+			font-style: italic;
+			font-family: 'Times New Roman';
+	}
+	.booksummary{padding: 2px 16px;
+				 text-align: justify;
+				 font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+				 color: white;
+    }
+    .section{text-align:center;
+    	     padding: 5px 80px;
+    }
+ 
+    .section-dark{background-color:#282e34;
+    			  color:#ddd;
+    }
+	.close{color:#ccc;
+    	   float:right;
+    	   font-size:30px;
+    }
+
+    /*color changed when mouse over*/
+    .close:hover{color:#000;
+    			 text-decoration: none;
+    			 cursor:pointer;
+    }
+
+    /*general styling for button*/
+    button{
+		background-color: #fddbe0;
+            color:black;
+            text-align: center; 
+            display:inline-block;
+            font-size:20px;
+			font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	}
+
+</style>
+</head>
+<body>
+		
+	<div class="ping1">
+		<div class="ptext">
+			<span class="border">
+				“You're BRAVER than you believe,<br><br> and STRONGER than you seem, <br><br>and SMARTER than you think.<br><br>― A.A. Milne, Winnie the Pooh<br><br>
+			</span>
+		</div>
+
+        <div class="main">
+            <ul>
+				<li><a href="home.html">Home</a></li>
+				<li><a href="book.html">Books</a></li>
+				<li><a href="bookings.php">Bookings</a></li>
+				<li><a href="login.php">Log In</a></li>
+				<li><a href="signup.php">Sign Up</a></li>
+				<li><a href="termsofuse.html">Terms of Use</a></li>
+				<li><a href="about.html">About Us</a></li>
+				<li><a href="contactus.php">Contact Us</a></li>
+				<li><a href="faq.html">FAQ</a></li>
+				</ul>
+        </div>
+	</div>
+
+	<section class="sectionsection-light">
+		<div class="nav">
+			<ul>
+				<li><a href="book.html">Action/Mystery</a></li>
+				<li><a href="Fantasy.html">Fantasy</a></li>
+				<li><a href="Romance.html">Romance</a></li>
+				<li><a href="Children.html">Children</a></li>
+				<li><a href="Horror.html">Horror</a></li>
+				<li><a href="Sci-Fi.html">Sci-Fi</a></li>
+			</ul>
+		</div>
+
+	<div class="outer">
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#WildThings" id="wildthings-label">
+			<div class="bookitem">
+				<div>
+					<img src="images\where the wild things are.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Where the wild <br>things are </h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="WildThings">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#wildthings-label">&times;</a>
+						<p class="booktitle">Where the Wild Things Are</p>
+						<p class="Author">By Maurice Sendak</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Where the Wild Things Are is fifty years old! Maurice Sendak's Caldecott Medal-winning picture book has become one of the most highly acclaimed and best-loved children's books of all time. A must for every child's bookshelf.
+	                        Introduce a new generation to Max's imaginative journey with this special anniversary edition. Let the wild rumpus continue as this classic comes to life like never before with new reproductions of Maurice Sendak's artwork.
+                            Astonishing state-of-the-art technology faithfully captures the color and detail of the original illustrations. Sendak himself enthusiastically endorsed this impressive new interpretation of his art before his death in 2012. This iconic story has inspired a movie, an opera, and the imagination of generations.
+							<button onclick="location.href='booking.html'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#caterpillar" id="caterpillar-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\the very hungry caterpillar.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Very<br>Hungry Caterpillar</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="caterpillar">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#caterpillar-label">&times;</a>
+						<p class="booktitle">The Very Hungry Caterpillar</p>
+						<p class="Author">By J.K.Rowling</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							A small caterpillar emerges from an egg and begins eating everything in sight. Finally, it is no longer hungry and no longer small. The big, fat caterpillar builds a cocoon around himself and finally emerges as a beautiful butterfly. In fact, what Carle calls the cocoon is really the pupa or chrysalis.<button onclick="location.href='booking.html'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>  
+		<!-- Modal ends --> 
+
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Goodnight" id="Goodnight-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Goodnight Moon.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Goodnight Moon</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Goodnight">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Goodnight-label">&times;</a>
+						<p class="booktitle">Goodnight Moon</p>
+						<p class="Author">By Margaret Wise Brown</p>
+					</div>
+					<div>
+						<p class="booksummary">
+                            Goodnight Moon was written by Maragret Wise Brown and illustrated by Clement Hurd. It is a classic children's bedtime story written about a rabbit's routine before he goes to bed. Before his bedtime, the rabbit goes around the room and notices items within eye sight and says goodnight to all of them.<button onclick="location.href='booking.html'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#BFG" id="BFG-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\The BFG.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The BFG</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="BFG">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#BFG-label">&times;</a>
+						<p class="booktitle">The BFG</p>
+						<p class="Author">By Roald Dahl, Quentin Blake (Illustrator)
+                        </p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Captured by a giant! The BFG is no ordinary bone-crunching giant. He is far too nice and jumbly. It's lucky for Sophie that he is. Had she been carried off in the middle of the night by the Bloodbottler, the Fleshlumpeater, the Bonecruncher, or any of the other giants-rather than the BFG-she would have soon become breakfast. 
+	
+                            When Sophie hears that they are flush-bunking off in England to swollomp a few nice little chiddlers, she decides she must stop them once and for all. And the BFG is going to help her!<button onclick="location.href='booking.html'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+
+		<a class="allbooks"  href="#Madeline" id="Madeline-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Madeline.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Madeline</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+
+		<div class="bookeg" id="Madeline">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Madeline-label">&times;</a>
+						<p class="booktitle">Madeline</p>
+						<p class="Author">By Ludwig Bemelmans </p>
+					</div>
+					<div>
+						<p class="booksummary">
+                            Madeline is one of the best-loved characters in children's literature. Set in picturesque Paris, this tale of a brave little girl's trip to the hospital was a Caldecott Honor Book in 1940 and has as much appeal today as it did then. The combination of a spirited heroine, timelessly appealing art, cheerful humor, and rhythmic text makes Madeline a perennial favorite with children of all ages.<button onclick="location.href='booking.html'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	  
+		<!-- Button trigger modal -->	  
+	 	<a class="allbooks"  href="#Guess" id="Guess-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Guess How Much I Love You.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Guess How Much<br>I Love You</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Guess">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Guess-label">&times;</a>
+						<p class="booktitle">Guess How Much I Love You</p>
+						<p class="Author">By Sam McBratney, Anita Jeram (illustrator)</p>
+					</div>
+					<div>
+						<p class="booksummary">
+                            Moral allegory and spiritual autobiography, The Little Prince is the most translated book in the French language. With a timeless charm it tells the story of a little boy who leaves the safety of his own tiny planet to travel the universe, learning the vagaries of adult behaviour through a series of extraordinary encounters. His personal odyssey culminates in a voyage to Earth and further adventures.<button onclick="location.href='booking.html'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+        <a class="allbooks"  href="#Charlie" id="Charlie-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Charlie and The Chocolate Factory.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Charlie and The<br>Chocolate Factory</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Clash">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Clash-label">&times;</a>
+						<p class="booktitle">Charlie and The Chocolate Factory</p>
+						<p class="Author">By Roald Dahl, Quentin Blake (illustrator)</p>
+					</div>
+					<div>
+						<p class="booksummary">
+                            Charlie Bucket's wonderful adventure begins when he finds one of Mr. Willy Wonka's precious Golden Tickets and wins a whole day inside the mysterious chocolate factory. Little does he know the surprises that are in store for him!<button onclick="location.href='booking.html'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	 
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Peter" id="Peter-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Peter Rabbit.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Tale of<br>Peter Rabbit</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Peter">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Peter-label">&times;</a>
+						<p class="booktitle">The Tale of Peter Rabbit</p>
+						<p class="Author">By Beatrix Potter</p>
+					</div>
+					<div>
+						<p class="booksummary">
+                            In this original edition, Peter and his sisters are told to go gather blackberries and not to go into MacGregor's garden because Peter's father was made into a pie by MacGregor after being found in the garden. Peter, who is wearing a new coat, promptly disobeys his mother, stuffs himself with vegetables, gets spotted by MacGregor, loses his coat and barely makes it out of the garden alive. When Peter gets home, he is given chamomile tea for dinner. Peter's sisters, who listened to their mother and stayed out of the forbidden garden have a regular dinner.<button onclick="location.href='booking.html'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#wonderfulThings" id="wonderfulThings-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\The Wonderful Things.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Wonderful Things<br>You Will Be</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+	 	<div class="bookeg" id="wonderfulThings">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#wonderfulThings-label">&times;</a>
+						<p class="booktitle">The Wonderful Things You Will Be</p>
+						<p class="Author">By Emily Winfield Martin </p>
+					</div>
+					<div>
+						<p class="booksummary">
+                            From brave and bold to creative and clever, Emily Winfield Martin's rhythmic rhyme expresses all the loving things that parents think of when they look at their children. With beautiful, and sometimes humorous, illustrations, and a clever gatefold with kids in costumes, this is a book grown-ups will love reading over and over to kids—both young and old. A great gift for any occasion, but a special stand-out for baby showers, birthdays, and graduation. The Wonderful Things You Will Be has a loving and truthful message that will endure for lifetimes.<button onclick="location.href='booking.html'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	  
+		<!-- Button trigger modal -->  
+		<a class="allbooks"  href="#LittlePrince" id="LittlePrince-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\The Little Prince.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Little Prince</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+	 	<div class="bookeg" id="LittlePrince">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#LittlePrince-label">&times;</a>
+						<p class="booktitle">The Little Prince</p>
+						<p class="Author">By Antoine de Saint-Exupéry</p>
+					</div>
+					<div>
+						<p class="booksummary">
+                            Moral allegory and spiritual autobiography, The Little Prince is the most translated book in the French language. With a timeless charm it tells the story of a little boy who leaves the safety of his own tiny planet to travel the universe, learning the vagaries of adult behaviour through a series of extraordinary encounters. His personal odyssey culminates in a voyage to Earth and further adventures.<button onclick="location.href='booking.html'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+			<!-- Modal ends -->
+	 </div> 
+	</section>
+
+	<div class="ping2">
+		<div class="ptext">
+			<span class="border">
+				“I knew who I was this morning, <br><br>but I've changed a few times since then.<br><br> ― Lewis Carroll, Alice’s Adventures in Wonderland<br><br>
+			</span>
+		</div>
+	</div>
+
+	<section class="section section-dark">
+			<footer>
+					<script type="text/javascript">
+						var date = '23/06/2019';
+						var date2 = '01/07/2019';
+					</script>
+					<p>
+					Creation on :
+					<script type="text/javascript">
+					document.write(date)
+					</script>
+					</p>
+					<p>
+					The Last modified date is:
+					<script type="text/javascript">
+					document.write(date2)
+					</script>
+					</p>
+				Copyright &copy; 2019 BookieStore<br>
+				<br><b>Disclaimer:</b> Materials such as images,and book synopses on this website do not belong to Bookie Store.<br>
+				These materials are obtained from the Internet for assignment purpose only. 
+			</footer>
+	</section>
+
+
+
+
+</body>
+</html>

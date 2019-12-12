@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html>
+<head>
+	<title>Bookie Store-About Us</title>
+<meta charset = "utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	.main {margin:auto;
+		   margin-right:10px;
+		   font-family:'Georgia';
+	}
+
+	.border{position:relative;
+			width:1050px;
+			height: 400px;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			background: #060c21;
+			margin:50px 0px 0px 200px;
+
+	}
+
+	.border:before{content: ' ';
+				   position:absolute;
+				   top: -2px;
+				   left:-2px;
+				   right:-2px;
+				   bottom:-2px;
+				   background:#fff;
+				   z-index:-1;
+				   
+	}
+
+	.border:after{content: ' ';
+				   position:absolute;
+				   top: -2px;
+				   left:-2px;
+				   right:-2px;
+				   bottom:-2px;
+				   background:#fff;
+				   z-index:-2;
+				   filter: blur(40px); 
+				   
+	}
+
+	.border:before, .border:after{background:linear-gradient(235deg, #ff2200,#060c21, #00bcd4);
+	}
+
+	.content{padding:20px;
+			 box-sizing:border-box;
+			 color:#fff;
+	}
+
+	.content h2{font-family:Times New Roman;
+				font-style:oblique;
+				font-size: 40px;
+				text-align:center;
+	}
+
+	.content h1{font-family:'Georgia';
+				font-size:25px;
+
+	}
+
+	.content p{font-family:serif;
+			   font-size:20px;
+	}
+
+	.team{overflow:hidden;
+		  text-align:center;
+		  padding:60px;
+	}
+
+	.team h1{text-transform: uppercase;
+			 margin-bottom:60px;
+	}
+
+	.boad{
+		display:block;
+		  margin:auto;
+		  width: 160px;
+		  height:7px;
+		  background:#ADD8E6;
+	}
+
+	.ss img{width:300px;
+		    height:300px;	    
+	}
+
+	.ss img:hover{filter:grayscale(100%);
+	}
+
+
+	.ss{margin-bottom:40px;
+	}
+
+	.ss a{display:line-block;
+		  margin:0px 30px;
+		  width:160px;
+		  height:160px;
+		  overflow:hidden;
+		  border-radius:50%;
+	}
+
+	.section{width:600px;
+		     margin:auto;
+		     font-size:20px;
+		     text-align:justify;
+		     visibility:  hidden;
+
+	}
+
+	.section:target{visibility:visible;
+	}
+
+
+	.name{display:block;
+		  margin-bottom:30px;
+		  text-align:center;
+		  font-size:22px;
+	}
+
+	footer{background-color:#282e34;
+		   height:180px;
+    	   color:#ddd;
+    	   text-align: center;
+    	   width: 100%;
+
+    }
+
+	body{background: url(images/background.jpg);
+		 background-size:cover;
+		 background-position:80px 120px;
+		 font-family:sans-serif;
+	}
+
+	ul{list-style-type:none;
+		float: right;
+		margin-top: 25px;
+		margin-right: 15px;
+	}
+
+	ul li{display: inline-block;
+	}
+
+	ul li a{text-decoration: none;
+		    color: black;
+		    padding: 5px 20px;
+		    border: 1px solid black;
+		    transition:0.6s ease;
+	}
+	
+	ul li a:hover{background-color:black;
+		          color:white;
+	}
+
+
+	
+</style>
+</head>
+<body>
+		<div class="main">
+				<ul>
+						<li><a href="home.html">Home</a></li>
+						<li><a href="book.html">Books</a></li>
+						<li><a href="bookings.php">Bookings</a></li>
+						<li><a href="login.php">Log In</a></li>
+						<li><a href="signup.php">Sign Up</a></li>
+						<li><a href="termsofuse.html">Terms of Use</a></li>
+						<li><a href="about.html">About Us</a></li>
+						<li><a href="contactus.php">Contact Us</a></li>
+						<li><a href="faq.html">FAQ</a></li>
+						</ul>
+			</div>
+
+    <div>
+    	<img src="images/Bookie logo.png" width="100px" height="90px">
+    </div> 
+
+    <div class="border">
+    	<div class="content">
+    		<h2>About Us</h2>
+    		<h1>The perfect spot for book lovers....</h1>
+    		<p>Bookie store was created for readers of every generation to find their little paradise, accessible from anywhere in the world at any time. Have you ever experienced the frustration of readers all around the world when you want to read a book, and cannot find it at your local book store? or when you cannot afford the new edition of your favorite book hard cover, and you stand in front of the store wondering if you'll ever get to read it? <br><br>With bookie store, this is all over. Bookie store provides an easy and affordable way of renting books online. This way, readers can save money while still having the pleasure of holding a real life book and reading it.</p>
+    	</div>
+    </div>
+
+    <div class="team">
+    	<h1> Our Team </h1>
+    	<span class="boad"></span>
+    	<div class="ss">
+    		<a href="#s1"><img src="images/s1.jpeg" alt=""></a>
+    		<a href="#s2"><img src="images/s2.jpeg" alt=""></a>
+    		<a href="#s3"><img src="images/s3.jpeg" alt=""></a>
+    	</div>
+	</div>
+
+		<div class="section" id="s1">
+    		<span class="name"> RENESMEE CULLEN</span>
+    		<span class="boad"></span>
+    		<p>Customer Success Manager-
+    		   Earned P.H.D in Web Design
+			   We face various questions every day and we try our best to offer solutions. Aside from questions regarding platform operations, we also hope to be their partners in running online shops!	
+    		</p>
+    	</div>
+
+    	<div class="section" id="s2">
+    		<span class="name">JAMIE WEST</span>
+    		<span class="boad"></span>
+    		<p>Systems Architect Manager-
+    			Earned Master in Systems Architect
+    			To me, every day at SHOPLINE is challenging. It is all about growing personally and with the team as a whole. Sustainable growth is the key for us to meet customers’ requests, challenges and bring even better products!
+    		</p>
+    	</div>
+
+    	<div class="section" id="s3">
+    		<span class="name">JACK GREY</span>
+    		<span class="boad"></span>
+    		<p>IT Manager-
+    		   Earned P.H.D in Computer Engineering
+			   The new startup environment is changing very fast. In order to keep up with the changes, SHOPLINE has a very flat organization. As long as the idea is great, no matter who proposes the idea, it is very likely to be established quickly. In terms of SHOPLINE’s attitude towards work, we opt to “make things better” first, and “become perfect” next!
+    		</p>
+    	</div>
+
+		<footer>
+				<script type="text/javascript">
+					var date = '23/06/2019';
+					var date2 = '01/07/2019';
+				</script>
+				<p>
+				Creation on :
+				<script type="text/javascript">
+				document.write(date)
+				</script>
+				</p>
+				<p>
+				The Last modified date is:
+				<script type="text/javascript">
+				document.write(date2)
+				</script>
+				</p>
+			Copyright &copy; 2019 BookieStore<br>
+			<br><b>Disclaimer:</b> Materials such as images,and book synopses on this website do not belong to Bookie Store.<br>
+			These materials are obtained from the Internet for assignment purpose only. 
+		</footer>
+
+</body>
+</html>
+

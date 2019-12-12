@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+	<title>Horror</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body,html{height:100%;
+				  margin:0;
+				  font-size:16px;
+				  font-family:"Lato",sans-serif;
+				  font-weight:400;
+				  line-height:1.8em;
+				  color:#666;
+				}
+		.ping1{background-image:url(images/horror2.jpg);
+			   min-height:1000px;
+			   position:relative;
+			   background-size: cover;
+			   background-repeat: no-repeat;
+			   background-position:center;
+			   background-attachment:fixed;
+		}
+		.ping2{background-image:url(images/horror1.jpg);
+			   min-height:800px;
+			   position:relative;
+			   background-size:cover;
+			   background-repeat: no-repeat;
+			   opacity: 0.80;
+			   background-attachment:fixed;
+		}
+		.border{font-family: FreeMono;
+			color:#DCDCDC;
+			text-align: center;
+			font-size:40px;
+			position: absolute;
+			font-weight:bold;
+  			text-shadow:
+   			-1px -1px 0 #000,  
+   			1px -1px 0 #000,
+   			-1px 1px 0 #000,
+     		1px 1px 0 #000;
+			top: 28%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			opacity:0.90;
+			animation: type 1.5s steps(30);
+			overflow:hidden;
+			white-space:nowrap ;
+	
+	}
+
+	/*specifies animation code*/
+	@keyframes type{
+		0%{
+			width:0ch;
+		}
+		100%{
+			width:30ch;
+		}
+	}
+	.main, .nav{margin:auto;
+		   		margin-right:10px;
+		   		font-family: 'Georgia' ;
+	}
+	.main ul{list-style-type:none;
+			float: right;
+			margin-top: 25px;
+			margin-right: 15px;
+	}
+	.main ul li, .nav ul li{display: inline-block;
+	}
+	.main ul li a{text-decoration: none;
+		    	  color: white;
+		    	  padding: 5px 20px;
+		    	  border: 1px solid white;
+		    	  transition:0.6s ease;
+				  background: rgba(3,3,3,0.5);
+	}
+	.nav ul li a{text-decoration: none;
+		    	 color: black;
+		    	 padding: 5px 20px;
+		    	 border: 1px solid black;
+		    	 transition:0.6s ease;
+	}
+	.main ul li a:hover{background-color:white;
+		          	   color:black;
+	}
+	.nav ul li a:hover{background-color:black;
+		          	   color:white;
+	}
+	.nav ul{list-style-type:none;
+			text-align:center;
+			margin-top: 5.8px;
+	}
+	.outer{margin: 16px;
+	       padding: auto;
+	       text-align: center;
+    }
+	.allbooks{display:inline-block;
+			  height: 320px;
+			  background-color:white;
+			  color: black;
+			  padding: 10px;
+	}
+	/color change when mouse over/
+	.allbooks:hover{background-color:#696969;
+					color: pink;
+	}
+	.bookitem{display: inline-block;
+			  margin: 20px;
+			  text-align: center;
+	}
+	img{width: auto;
+		min-width: 133px;
+		height: 200px;
+	}
+
+	/* The modal's background */
+	.bookeg{visibility: hidden;
+			opacity: 0;
+			position: fixed;
+			z-index: 1;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: black;
+			background-color: rgba(0,0,0,0.4);
+	}
+
+	/* Display the modal when targeted */
+	.bookeg:target{visibility: visible;
+				   opacity: 1;
+	}
+
+	/* The modal box */
+	.bookdialog{margin: auto;
+				padding: 20px;
+				background-color: black;
+				border: 1px solid;
+				border-style: ridge;
+				width: 60%;
+				position: relative;
+				-webkit-transition: all 5s ease-in-out;
+				-moz-transition: all 5s ease-in-out;
+				-o-transition: all 5s ease-in-out;
+				transition: all 5s ease-in-out;
+	}
+	.bookdialog{position: absolute;
+				top: 20px;
+			    right: 270px;
+			    transition: all 200ms;
+				font-size: 30px;
+				font-weight: bold;
+				text-decoration: none;
+	            color: white;
+	}
+	
+	.bookcontent{overflow: auto;
+				 font-size: 15pt;
+				 
+	}
+	.bookheader{padding: 2px 16px;
+				background-color:#fddbe0;
+				color: black;
+				box-sizing: border-box;}
+	.booktitle{font-size: 17pt;
+			   font-family: Times New Roman;
+			   font-weight: bold;
+	}
+	.Author{font-size: 14pt;
+			font-style: italic;
+			font-family: Times New Roman;
+	}
+	.booksummary{padding: 2px 16px;
+				 text-align: justify;
+				 font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+				 color: white;
+    }
+    .section{text-align:center;
+    	     padding: 5px 80px;
+    }
+ 
+    .section-dark{background-color:#282e34;
+    			  color:#ddd;
+    }
+	.close{color:#ccc;
+    	   float:right;
+    	   font-size:30px;
+    }
+
+    /*color changed when mouse over*/
+    .close:hover{color:#000;
+    			 text-decoration: none;
+    			 cursor:pointer;
+    }
+
+        /*general styling for button*/
+    button{
+		background-color: #fddbe0;
+            color:black;
+            text-align: center; 
+            display:inline-block;
+            font-size:20px;
+			font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	}
+
+	
+</style>
+</head>
+<body>
+	<div class="ping1">
+		<div class="ptext">
+			<span class="border">
+				“Everybody is a book of blood; <br><br> wherever we're opened, <br><br>we're red.”<br><br>― Clive Barker, Books of Blood <br><br>
+			</span>
+		</div>
+
+        <div class="main">
+            <ul>
+				<li><a href="home.html">Home</a></li>
+				<li><a href="book.html">Books</a></li>
+				<li><a href="bookings.php">Bookings</a></li>
+				<li><a href="login.php">Log In</a></li>
+				<li><a href="signup.php">Sign Up</a></li>
+				<li><a href="termsofuse.html">Terms of Use</a></li>
+				<li><a href="about.html">About Us</a></li>
+				<li><a href="contactus.php">Contact Us</a></li>
+				<li><a href="faq.html">FAQ</a></li>
+			</ul>
+        </div>
+	</div>
+
+	<section class="sectionsection-light">
+		<div class="nav">
+			<ul>
+				<li><a href="book.html">Action/Mystery</a></li>
+				<li><a href="Fantasy.html">Fantasy</a></li>
+				<li><a href="Romance.html">Romance</a></li>
+				<li><a href="Children.html">Children</a></li>
+				<li><a href="Horror.html">Horror</a></li>
+				<li><a href="Sci-Fi.html">Sci-Fi</a></li>
+			</ul>
+		</div>
+
+	<div class="outer">
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#TheHunger" id="TheHunger-label">
+			<div class="bookitem">
+				<div>
+					<img src="images\The Hunger.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Hunger</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="TheHunger">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#TheHunger-label">&times;</a>
+						<p class="booktitle">The Hunger</p>
+						<p class="Author">By Alma Katsu</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Tamsen Donner must be a witch. That is the only way to explain the series of misfortunes that have plagued the wagon train known as the Donner Party. Depleted rations, bitter quarrels, and the mysterious death of a little boy have driven the pioneers to the brink of madness. They cannot escape the feeling that someone--or something--is stalking them. Whether it was a curse from the beautiful Tamsen, the choice to follow a disastrous experimental route West, or just plain bad luck--the 90 men, women, and children of the Donner Party are at the brink of one of the deadliest and most disastrous western adventures in American history. 
+	
+							While the ill-fated group struggles to survive in the treacherous mountain conditions--searing heat that turns the sand into bubbling stew; snows that freeze the oxen where they stand--evil begins to grow around them, and within them. As members of the party begin to disappear, they must ask themselves "What if there is something waiting in the mountains? Something disturbing and diseased...and very hungry?" <button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+	    <!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Missing" id="Missing-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\The Missing Season.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Missing Season</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Missing">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Missing-label">&times;</a>
+						<p class="booktitle">The Missing Season</p>
+						<p class="Author">By Gillian French</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Whenever another kid goes missing in October, the Pender kids know what is really behind it: a horrific monster out in the marshes they have named the Mumbler.
+	
+							That’s what Clara’s new crew tells her when she moves to town: Bree and Sage, who take her under their wing; spirited Trace, who has taken the lead on this year’s Halloween prank war; and magnetic Kincaid, whose devil-may-care attitude and air of mystery are impossible for Clara to resist.
+							
+							Clara doesn’t actually believe in the Mumbler. But as Halloween gets closer and tensions build in the town, it’s hard to shake the feeling that there really is something dark and dangerous in Pender, lurking in the shadows, waiting to bring the stories to life.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>  
+		<!-- Modal ends --> 
+
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Cardinal" id="Cardinal-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Cardinal Black.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Cardinal Black</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Cardinal">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Cardinal-label">&times;</a>
+						<p class="booktitle">Cardinal Black</p>
+						<p class="Author">By Robert R. McCammon </p>
+					</div>
+					<div>
+						<p class="booksummary">
+                            Cardinal Black is the latest installment in Robert McCammon's unique series of historical thrillers featuring Matthew Corbett, professional problem solver, who has been called "the Early American James Bond." December 1703 finds Berry Grigsby living as Mary Lynn Nash in a small English village where she has fallen victim to Professor Fell's involuntary drug experiments. Her mind is quickly deteriorating under the drugs influence, and the only way to save her is a potion book that was stolen in an attack on the village orchestrated by a mysterious madman going by the name Cardinal Black. Matthew Corbett has volunteered to travel with Julian Devane, a self-proclaimed "fool and bad man" in the employ of Professor Fell, to hunt down the potion book. They follow the trail to London, where the book will be sold at a secret auction. Matthew and Julian manage to secure a seat at the auction by masquerading as respected and feared underground operatives, but to prevail in their high-stakes mission, they will require help from a very unlikely source. Even if they are successful, their race to save Berry Grigsby will leave a trail of destruction in its wake. Cardinal Black is another extraordinary achievement from one of America's most skilled authors, and it features some of the most memorable, compelling, and chilling characters in the Matthew Corbett series to date, each with their own competing agendas. This masterful historical adventure is perfectly balanced for long-time fans of the series and new readers alike who are now joining the adventure. 
+							<button onclick="location.href='bookings.php'"> Rent now!</button> </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+	    <!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Cabin" id="Cabin-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\The Cabin at the End of the World.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Cabin at the <br>End of the World</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Cabin">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Cabin-label">&times;</a>
+						<p class="booktitle">The Cabin at the End of the World</p>
+						<p class="Author"> By Paul Tremblay </p>
+					</div>
+					<div>
+						<p class="booksummary">
+							The Bram Stoker Award-winning author of A Head Full of Ghosts adds an inventive twist to the home invasion horror story in a heart-palpitating novel of psychological suspense that recalls Stephen King’s Misery, Ruth Ware’s In a Dark, Dark Wood, and Jack Ketchum’s cult hit The Girl Next Door.
+	
+							Seven-year-old Wen and her parents, Eric and Andrew, are vacationing at a remote cabin on a quiet New Hampshire lake. Their closest neighbours are more than two miles in either direction along a rutted dirt road.
+							
+							One afternoon, as Wen catches grasshoppers in the front yard, a stranger unexpectedly appears in the driveway. Leonard is the largest man Wen has ever seen but he is young, friendly, and he wins her over almost instantly. Leonard and Wen talk and play until Leonard abruptly apologizes and tells Wen, "None of what’s going to happen is your fault". Three more strangers then arrive at the cabin carrying unidentifiable, menacing objects. As Wen sprints inside to warn her parents, Leonard calls out: "Your dads won’t want to let us in, Wen. But they have to. We need your help to save the world."
+							
+							Thus begins an unbearably tense, gripping tale of paranoia, sacrifice, apocalypse, and survival that escalates to a shattering conclusion, one in which the fate of a loving family and quite possibly all of humanity are entwined. The Cabin at the End of the World is a masterpiece of terror and suspense from the fantastically fertile imagination of Paul Tremblay.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Carol" id="Carol-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Unbury Carol.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Unbury Carol</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Carol">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Carol-label">&times;</a>
+						<p class="booktitle">Unbury Carol</p>
+						<p class="Author">By Josh Malerman</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Carol Evers is a woman with a dark secret. She has died many times . . . but her many deaths are not final: They are comas, a waking slumber indistinguishable from death, each lasting days.
+	
+							Only two people know of Carol’s eerie condition. One is her husband, Dwight, who married Carol for her fortune, and—when she lapses into another coma—plots to seize it by proclaiming her dead and quickly burying her . . . alive. The other is her lost love, the infamous outlaw James Moxie. When word of Carol’s dreadful fate reaches him, Moxie rides the Trail again to save his beloved from an early, unnatural grave.
+							
+						And all the while, awake and aware, Carol fights to free herself from the crippling darkness that binds her—summoning her own fierce will to survive. As the players in this drama of life and death fight to decide her fate, Carol must in the end battle to save herself.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+	    <!-- Modal ends -->
+	  
+		<!-- Button trigger modal -->	
+	 	<a class="allbooks"  href="#Sawkill" id="Sawkill-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Sawkill Girls.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Sawkill Girls</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Sawkill">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Sawkill-label">&times;</a>
+						<p class="booktitle">Sawkill Girls</p>
+						<p class="Author">By Claire Legrand</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Beware of the woods and the dark, dank deep.
+	
+							He’ll follow you home, and he won’t let you sleep.
+							
+							Who are the Sawkill Girls?
+							
+							Marion: the new girl. Awkward and plain, steady and dependable. Weighed down by tragedy and hungry for love she’s sure she’ll never find.
+							
+							Zoey: the pariah. Luckless and lonely, hurting but hiding it. Aching with grief and dreaming of vanished girls. Maybe she’s broken—or maybe everyone else is.
+							
+							Val: the queen bee. Gorgeous and privileged, ruthless and regal. Words like silk and eyes like knives, a heart made of secrets and a mouth full of lies.
+							
+							Their stories come together on the island of Sawkill Rock, where gleaming horses graze in rolling pastures and cold waves crash against black cliffs. Where kids whisper the legend of an insidious monster at parties and around campfires.
+							
+							Where girls have been disappearing for decades, stolen away by a ravenous evil no one has dared to fight… until now.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+        <a class="allbooks"  href="#Dread" id="Dread-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Dread Nation.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Dread Nation</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Dread">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Dread-label">&times;</a>
+						<p class="booktitle">Dread Nation</p>
+						<p class="Author">By Justina Ireland </p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Jane McKeene was born two days before the dead began to walk the battlefields of Gettysburg and Chancellorsville—derailing the War Between the States and changing America forever. In this new nation, safety for all depends on the work of a few, and laws like the Native and Negro Reeducation Act require certain children attend combat schools to learn to put down the dead. But there are also opportunities—and Jane is studying to become an Attendant, trained in both weaponry and etiquette to protect the well-to-do. It’s a chance for a better life for Negro girls like Jane. After all, not even being the daughter of a wealthy white Southern woman could save her from society’s expectations.
+	
+							But that’s not a life Jane wants. Almost finished with her education at Miss Preston’s School of Combat in Baltimore, Jane is set on returning to her Kentucky home and doesn’t pay much mind to the politics of the eastern cities, with their talk of returning America to the glory of its days before the dead rose. But when families around Baltimore County begin to go missing, Jane is caught in the middle of a conspiracy, one that finds her in a desperate fight for her life against some powerful enemies. And the restless dead, it would seem, are the least of her problems.<button onclick="location.href='bookings.php'"> Rent now!</button> </p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+	    <!-- Modal ends -->
+	 
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Pitch" id="Pitch-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Pitch Dark.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Pitch Dark</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Pitch">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Pitch-label">&times;</a>
+						<p class="booktitle">Pitch Dark</p>
+						<p class="Author">By Courtney Alameda</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Lost to time, Tuck Morgan and his crew have slept in stasis aboard the USS John Muir for centuries. Their ship harbors a chunk of Earth, which unbeknownst to them, is the last hope for the failing human race.
+	
+							Laura Cruz is a shipraider searching the galaxy for the history that was scattered to the stars. Once her family locates the John Muir and its precious cargo, they are certain human civilization is saved.
+							
+						When Tuck's and Laura’s worlds collide―literally―the two teens must outwit their enemies, evade brutal monsters that kill with sound, and work together to save the John Muir . . . and the whole human race.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Sleeping" id="Sleeping-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Sleeping Beauties.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Sleeping Beauties</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+	 	<div class="bookeg" id="Sleeping">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Sleeping-label">&times;</a>
+						<p class="booktitle">Sleeping Beauties</p>
+						<p class="Author">By Stephen King , Owen King  </p>
+					</div>
+					<div>
+						<p class="booksummary">
+							In a future so real and near it might be now, something happens when women go to sleep; they become shrouded in a cocoon-like gauze. 
+	
+							If they are awakened, and the gauze wrapping their bodies is disturbed or violated, the women become feral and spectacularly violent; and while they sleep they go to another place. 
+							
+							The men of our world are abandoned, left to their increasingly primal devices. One woman, however, the mysterious Evie, is immune to the blessing or curse of the sleeping disease. 
+							
+						Is Evie a medical anomaly to be studied, or is she a demon who must be slain? <button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+	    <!-- Modal ends -->
+	  
+		<!-- Button trigger modal --> 
+		<a class="allbooks"  href="#Ararat" id="Ararat-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Ararat.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Ararat</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+	 	<div class="bookeg" id="Ararat">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Ararat-label">&times;</a>
+						<p class="booktitle">Ararat</p>
+						<p class="Author">By Christopher Golden </p>
+					</div>
+					<div>
+						<p class="booksummary">
+                            When a newly engaged couple climbs Mount Ararat in Turkey, an avalanche forces them to seek shelter inside a massive cave uncovered by the snow fall. The cave is actually an ancient, buried ship that many quickly come to believe is really Noah’s Ark. When a team of scholars, archaeologists, and filmmakers make it inside the ark for the first time, they discover an elaborate coffin in its recesses. The artefact tempts their professional curiosity; so they break it open. Inside, they find an ugly, misshapen cadaver—not the holy man that they expected, a hideous creature with horns. A massive blizzard blows in, trapping them in that cave thousands of meters up the side of a remote mountain…but they are not alone.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	 </div> 
+	</section>
+
+	<div class="ping2">
+		<div class="ptext">
+			<span class="border">
+				“Where evil walks, hell follows.”<br><br> ―  Asa Swift, The Devil's Cabin: Hell Hath No Pity <br><br>
+			</span>
+		</div>
+	</div>
+
+	<section class="section section-dark">
+			<footer>
+					<script type="text/javascript">
+						var date = '23/06/2019';
+						var date2 = '01/07/2019';
+					</script>
+					<p>
+					Creation on :
+					<script type="text/javascript">
+					document.write(date)
+					</script>
+					</p>
+					<p>
+					The Last modified date is:
+					<script type="text/javascript">
+					document.write(date2)
+					</script>
+					</p>
+				Copyright &copy; 2019 BookieStore<br>
+				<br><b>Disclaimer:</b> Materials such as images,and book synopses on this website do not belong to Bookie Store.<br>
+				These materials are obtained from the Internet for assignment purpose only. 
+			</footer>
+	</section>
+
+
+
+
+</body>
+</html>

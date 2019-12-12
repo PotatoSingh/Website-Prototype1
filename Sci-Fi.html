@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+	<title>Sci-Fi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body,html{height:100%;
+				  margin:0;
+				  font-size:16px;
+				  font-family:"Lato",sans-serif;
+				  font-weight:400;
+				  line-height:1.8em;
+				  color:#666;
+				}
+		.ping1{background-image:url(images/Sci-Fi2.jpg);
+			   min-height:1000px;
+			   position:relative;
+			   background-size: cover;
+			   background-repeat: no-repeat;
+			   background-position:center;
+			   background-attachment:fixed;
+		}
+		.ping2{background-image:url(images/Sci-Fi1.jpg);
+			   min-height:800px;
+			   position:relative;
+			   background-size:cover;
+			   background-repeat: no-repeat;
+			   opacity: 0.80;
+			   background-attachment:fixed;
+		}
+		.border{font-family: FreeMono;
+			color:#DCDCDC;
+			text-align: center;
+			font-size:40px;
+			position: absolute;
+			font-weight:bold;
+  			text-shadow:
+   			-1px -1px 0 #000,  
+   			1px -1px 0 #000,
+   			-1px 1px 0 #000,
+     		1px 1px 0 #000;
+			top: 28%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			opacity:0.90;
+			animation: type 1.5s steps(30);
+			overflow:hidden;
+			white-space:nowrap ;
+	
+	}
+
+	/*specifies animation code*/
+	@keyframes type{
+		0%{
+			width:0ch;
+		}
+		100%{
+			width:30ch;
+		}
+	}
+	.main, .nav{margin:auto;
+		   		margin-right:10px;
+		   		font-family:'Georgia';
+	}
+	.main ul{list-style-type:none;
+			float: right;
+			margin-top: 25px;
+			margin-right: 15px;
+	}
+	.main ul li, .nav ul li{display: inline-block;
+	}
+	.main ul li a{text-decoration: none;
+		    	  color: white;
+		    	  padding: 5px 20px;
+		    	  border: 1px solid white;
+		    	  transition:0.6s ease;
+				  background: rgba(3,3,3,0.5);
+				 
+	}
+
+	.nav ul li a{text-decoration: none;
+		    	 color: black;
+		    	 padding: 5px 20px;
+		    	 border: 1px solid black;
+		    	 transition:0.6s ease;
+	}
+
+	.main ul li a:hover{background-color:white;
+		          	   color:black;
+	}
+
+	.nav ul li a:hover{background-color:black;
+		          	   color:white;
+	}
+
+	.nav ul{list-style-type:none;
+			text-align:center;
+			margin-top: 5.8px;
+	}
+
+	.outer{margin: 16px;
+	       padding: auto;
+	       text-align: center;
+    }
+
+	.allbooks{display:inline-block;
+			  height: 320px;
+			  background-color:white;
+			  color: black;
+			  padding: 10px;
+	}
+
+	/*color change when mouse over*/
+	.allbooks:hover{background-color:#696969;
+					color: pink;
+	}
+	.bookitem{display: inline-block;
+			  margin: 20px;
+			  text-align: center;
+	}
+	img{width: auto;
+		min-width: 133px;
+		height: 200px;
+	}
+
+	/* The modal's background */
+	.bookeg{visibility: hidden;
+			opacity: 0;
+			position: fixed;
+			z-index: 1;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: black;
+			background-color: rgba(0,0,0,0.4);
+	}
+
+	/* Display the modal when targeted */
+	.bookeg:target{visibility: visible;
+				   opacity: 1;
+	}
+
+	/* The modal box */
+	.bookdialog{margin: auto;
+				padding: 20px;
+				background-color: black;
+				border: 1px solid;
+				border-style: ridge;
+				width: 60%;
+				position: relative;
+				-webkit-transition: all 5s ease-in-out;
+				-moz-transition: all 5s ease-in-out;
+				-o-transition: all 5s ease-in-out;
+				transition: all 5s ease-in-out;
+	}
+	.bookdialog{position: absolute;
+				top: 20px;
+			    right: 270px;
+			    transition: all 200ms;
+				font-size: 30px;
+				font-weight: bold;
+				text-decoration: none;
+	            color: white;
+	}
+	
+	.bookcontent{overflow: auto;
+				 font-size: 15pt;
+				 
+	}
+	.bookheader{padding: 2px 16px;
+				background-color:#fddbe0;
+				color: black;
+				box-sizing: border-box;}
+	.booktitle{font-size: 17pt;
+			   font-family: Times New Roman;
+			   font-weight: bold;
+	}
+	.Author{font-size: 14pt;
+			font-style: italic;
+			font-family: Times New Roman;
+	}
+	.booksummary{padding: 2px 16px;
+				 text-align: justify;
+				 font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+				 color: white;
+    }
+
+    .section{text-align:center;
+    	     padding: 5px 80px;
+    }
+ 
+    .section-dark{background-color:#282e34;
+    			  color:#ddd;
+    }
+
+	.close{color:#ccc;
+    	   float:right;
+    	   font-size:30px;
+    }
+
+    /color changed when mouse over/
+    .close:hover{color:#000;
+    			 text-decoration: none;
+    			 cursor:pointer;
+    }
+
+    /*general styling for button*/
+	button{
+		background-color: #fddbe0;
+            color:black;
+            text-align: center; 
+            display:inline-block;
+            font-size:20px;
+			font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	}
+
+</style>
+</head>
+<body>
+	<div class="ping1">
+		<div class="ptext">
+			<span class="border">
+				"Any planet is 'Earth' <br><br>to those that live on it."<br><br>― Pebble in the Sky<br><br>
+			</span>
+		</div>
+
+        <div class="main">
+            <ul>
+				<li><a href="home.html">Home</a></li>
+				<li><a href="book.html">Books</a></li>
+				<li><a href="bookings.php">Bookings</a></li>
+				<li><a href="login.php">Log In</a></li>
+				<li><a href="signup.php">Sign Up</a></li>
+				<li><a href="termsofuse.html">Terms of Use</a></li>
+				<li><a href="about.html">About Us</a></li>
+				<li><a href="contactus.php">Contact Us</a></li>
+				<li><a href="faq.html">FAQ</a></li>
+				</ul>
+        </div>
+	</div>
+
+	<section class="sectionsection-light">
+		<div class="nav">
+			<ul>
+				<li><a href="book.html">Action/Mystery</a></li>
+				<li><a href="Fantasy.html">Fantasy</a></li>
+				<li><a href="Romance.html">Romance</a></li>
+				<li><a href="Children.html">Children</a></li>
+				<li><a href="Horror.html">Horror</a></li>
+				<li><a href="Sci-Fi.html">Sci-Fi</a></li>
+			</ul>
+		</div>
+
+	<div class="outer">
+		<!-- Button trigger modal -->
+		<a class="allbooks"  href="#Lord" id="Lord-label">
+			<div class="bookitem">
+				<div>
+					<img src="images\The Lord of the Rings.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Lord of<br>the Rings</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Lord">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Lord-label">&times;</a>
+						<p class="booktitle">The Lord of the Rings</p>
+						<p class="Author">By J.R.R. Tolkien</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							In ancient times the Rings of Power were crafted by the Elven-smiths, and Sauron, the Dark Lord, forged the One Ring, filling it with his own power so that he could rule all others. But the One Ring was taken from him, and though he sought it throughout Middle-earth, it remained lost to him. After many ages it fell by chance into the hands of the hobbit Bilbo Baggins.
+	
+							From Sauron's fastness in the Dark Tower of Mordor, his power spread far and wide. Sauron gathered all the Great Rings to him, but always he searched for the One Ring that would complete his dominion.
+							
+							When Bilbo reached his eleventy-first birthday he disappeared, bequeathing to his young cousin Frodo the Ruling Ring and a perilous quest: to journey across Middle-earth, deep into the shadow of the Dark Lord, and destroy the Ring by casting it into the Cracks of Doom.
+							
+						The Lord of the Rings tells of the great quest undertaken by Frodo and the Fellowship of the Ring: Gandalf the Wizard; the hobbits Merry, Pippin, and Sam; Gimli the Dwarf; Legolas the Elf; Boromir of Gondor; and a tall, mysterious stranger called Strider.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->	   
+	 	<a class="allbooks"  href="#Hitchhiker" id="Hitchhiker-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\The Hitchhiker's Guide to the Galaxy.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Hitchhiker's Guide<br>to the Galaxy</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Hitchhiker">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Hitchhiker-label">&times;</a>
+						<p class="booktitle">The Hitchhiker's Guide to the Galaxy</p>
+						<p class="Author">By Douglas Adams </p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Seconds before the Earth is demolished to make way for a galactic freeway, Arthur Dent is plucked off the planet by his friend Ford Prefect, a researcher for the revised edition of The Hitchhiker's Guide to the Galaxy who, for the last fifteen years, has been posing as an out-of-work actor.
+	
+							Together this dynamic pair begin a journey through space aided by quotes from The Hitchhiker's Guide ("A towel is about the most massively useful thing an interstellar hitchhiker can have") and a galaxy-full of fellow travelers: Zaphod Beeblebrox—the two-headed, three-armed ex-hippie and totally out-to-lunch president of the galaxy; Trillian, Zaphod's girlfriend (formally Tricia McMillan), whom Arthur tried to pick up at a cocktail party once upon a time zone; Marvin, a paranoid, brilliant, and chronically depressed robot; Veet Voojagig, a former graduate student who is obsessed with the disappearance of all the ballpoint pens he bought over the years.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div> 
+		<!-- Modal ends --> 
+
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Ender" id="Ender-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Ender's Game.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Ender's Game</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Ender">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Ender-label">&times;</a>
+						<p class="booktitle">Ender's Game</p>
+						<p class="Author">By Orson Scott Card</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Andrew "Ender" Wiggin thinks he is playing computer simulated war games; he is, in fact, engaged in something far more desperate. The result of genetic experimentation, Ender may be the military genius Earth desperately needs in a war against an alien enemy seeking to destroy all human life. The only way to find out is to throw Ender into ever harsher training, to chip away and find the diamond inside, or destroy him utterly. Ender Wiggin is six years old when it begins. He will grow up fast.
+	
+							But Ender is not the only result of the experiment. The war with the Buggers has been raging for a hundred years, and the quest for the perfect general has been underway almost as long. Ender's two older siblings, Peter and Valentine, are every bit as unusual as he is, but in very different ways. While Peter was too uncontrollably violent, Valentine very nearly lacks the capability for violence altogether. Neither was found suitable for the military's purpose. But they are driven by their jealousy of Ender, and by their inbred drive for power. Peter seeks to control the political process, to become a ruler. Valentine's abilities turn more toward the subtle control of the beliefs of commoner and elite alike, through powerfully convincing essays. Hiding their youth and identities behind the anonymity of the computer networks, these two begin working together to shape the destiny of Earth-an Earth that has no future at all if their brother Ender fails.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+	   <!-- Modal ends -->
+	   
+		<!-- Button trigger modal -->
+	 	<a class="allbooks"  href="#Dune" id="Dune-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Dune.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Dune</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="Dune">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Dune-label">&times;</a>
+						<p class="booktitle">Dune</p>
+						<p class="Author"> By Frank Herbert </p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Set in the far future amidst a sprawling feudal interstellar empire where planetary dynasties are controlled by noble houses that owe an allegiance to the imperial House Corrino, Dune tells the story of young Paul Atreides (the heir apparent to Duke Leto Atreides and heir of House Atreides) as he and his family accept control of the desert planet Arrakis, the only source of the 'spice' melange, the most important and valuable substance in the cosmos. The story explores the complex, multi-layered interactions of politics, religion, ecology, technology, and human emotion as the forces of the empire confront each other for control of Arrakis.
+	
+							Published in 1965, it won the Hugo Award in 1966 and the inaugural Nebula Award for Best Novel. Dune is frequently cited as the world's best-selling sf novel.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+
+		<a class="allbooks"  href="#1984" id="1984-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\1984.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>1984</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+		<div class="bookeg" id="1984">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#1984-label">&times;</a>
+						<p class="booktitle">1984</p>
+						<p class="Author">By George Orwell, Erich Fromm</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							The year 1984 has come and gone, but George Orwell's prophetic, nightmarish vision in 1949 of the world we were becoming is timelier than ever. 1984 is still the great modern classic of "negative utopia"—a startlingly original and haunting novel that creates an imaginary world that is completely convincing, from the first sentence to the last four words. No one can deny the novel's hold on the imaginations of whole generations, or the power of its admonitions—a power that seems to grow, not lessen, with the passage of time.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+	  	<!-- Modal ends -->
+	  
+		<!-- Button trigger modal -->
+
+	 	<a class="allbooks"  href="#Brave" id="Brave-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Brave New World.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Brave New World</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+
+        <div class="bookeg" id="Brave">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Brave-label">&times;</a>
+						<p class="booktitle">Brave New World </p>
+						<p class="Author">By Aldous Huxley </p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Brave New World is a dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in a futuristic World State of genetically modified citizens and an intelligence-based social hierarchy, the novel anticipates huge scientific developments in reproductive technology, sleep-learning, psychological manipulation, and classical conditioning that are combined to make a utopian society that goes challenged only by a single outsider.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+
+        <a class="allbooks"  href="#Animal" id="Animal-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Animal Farm.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Animal Farm</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+        <div class="bookeg" id="Animal">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Animal-label">&times;</a>
+						<p class="booktitle">Animal Farm</p>
+						<p class="Author">By George Orwell </p>
+					</div>
+					<div>
+						<p class="booksummary">
+							“All animals are equal, but some animals are more equal than others.”
+	
+							A farm is taken over by its overworked, mistreated animals. With flaming idealism and stirring slogans, they set out to create a paradise of progress, justice, and equality. Thus the stage is set for one of the most telling satiric fables ever penned—a razor-edged fairy tale for grown-ups that records the evolution from revolution against tyranny to a totalitarianism just as terrible.
+							
+						    When Animal Farm was first published, Stalinist Russia was seen as its target. Today it is devastatingly clear that wherever and whenever freedom is attacked, under whatever banner, the cutting clarity and savage comedy of George Orwell’s masterpiece have a meaning and message still ferociously fresh.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+	 	<!-- Modal ends -->
+	 
+		<!-- Button trigger modal -->
+
+	 	<a class="allbooks"  href="#Calculating" id="Calculating-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images/The Calculating Stars.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Calculating Stars</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+
+        <div class="bookeg" id="Calculating">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Calculating-label">&times;</a>
+						<p class="booktitle">The Calculating Stars</p>
+						<p class="Author">By Mary Robinette Kowal </p>
+					</div>
+					<div>
+						<p class="booksummary">
+							On a cold spring night in 1952, a huge meteorite fell to earth and obliterated much of the east coast of the United States, including Washington D.C. The ensuing climate cataclysm will soon render the earth inhospitable for humanity, as the last such meteorite did for the dinosaurs. This looming threat calls for a radically accelerated effort to colonize space, and requires a much larger share of humanity to take part in the process.
+	
+							Elma York’s experience as a WASP pilot and mathematician earns her a place in the International Aerospace Coalition’s attempts to put man on the moon, as a calculator. But with so many skilled and experienced women pilots and scientists involved with the program, it doesn’t take long before Elma begins to wonder why they can’t go into space, too.
+							
+						Elma’s drive to become the first Lady Astronaut is so strong that even the most dearly held conventions of society may not stand a chance against her.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+
+		<!-- Button trigger modal -->
+
+		<a class="allbooks"  href="#Ancestral" id="Ancestral-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\Ancestral Night.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>Ancestral Night</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+
+	 	<div class="bookeg" id="Ancestral">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Ancestral-label">&times;</a>
+						<p class="booktitle">Ancestral Night</p>
+						<p class="Author">By Elizabeth Bear</p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Haimey Dz thinks she knows what she wants.
+	
+							She thinks she knows who she is.
+							
+							She is wrong.
+							
+							A routine salvage mission uncovers evidence of a terrible crime and relics of powerful ancient technology. Haimey and her small crew run afoul of pirates at the outer limits of the Milky Way, and find themselves on the run and in possession of universe-changing information.
+							
+							When authorities prove corrupt, Haimey realizes that she is the only one who can protect her galaxy-spanning civilization from the implications of this ancient technology—and the revolutionaries who want to use it for terror and war. Her quest will take her careening from the event horizon of the supermassive black hole at the galaxy’s core to the infinite, empty spaces at its edge.
+							
+						To save everything that matters, she will need to uncover the secrets of ancient intelligences lost to time—and her own lost secrets, which she will wish had remained hidden from her forever.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+		<!-- Modal ends -->
+	  
+		<!-- Button trigger modal --> 		  
+
+		<a class="allbooks"  href="#Gone" id="Gone-label">
+	 		<div class="bookitem">
+				<div>
+					<img src="images\The Gone World.jpg">
+				</div>
+				<div class="booktitle">
+					<h4>The Gone World</h4>
+				</div>
+			</div>
+		</a>
+		<!-- Button trigger modal ends -->
+		<!-- Modal -->
+
+	 	<div class="bookeg" id="Gone">
+			<div class="bookdialog">
+				<div class="bookcontent">
+					<div class="bookheader">
+						<a class="close" href="#Gone-label">&times;</a>
+						<p class="booktitle">The Gone World</p>
+						<p class="Author">By Tom Sweterlitsch  </p>
+					</div>
+					<div>
+						<p class="booksummary">
+							Shannon Moss is part of a clandestine division within the Naval Criminal Investigative Service. In Western Pennsylvania, 1997, she is assigned to solve the murder of a Navy SEAL's family--and to locate his teenage daughter, who has disappeared. Though she can't share the information with conventional law enforcement, Moss discovers that the missing SEAL was an astronaut aboard the spaceship U.S.S. Libra--a ship assumed lost to the darkest currents of Deep Time. Moss knows first-hand the mental trauma of time-travel and believes the SEAL's experience with the future has triggered this violence. 
+	
+							Determined to find the missing girl and driven by a troubling connection from her own past, Moss travels ahead in time to explore possible versions of the future, seeking evidence or insight that will crack the present-day case. To her horror, the future reveals that it's not only the fate of a family that hinges on her work, for what she witnesses rising over time's horizon and hurtling toward the present is the Terminus: the terrifying and cataclysmic end of humanity itself.
+							
+							Luminous and unsettling, The Gone World bristles with world-shattering ideas yet remains at its heart an intensely human story.<button onclick="location.href='bookings.php'"> Rent now!</button></p>
+		            </div>
+		         </div>
+		     </div>
+		</div>
+			<!-- Modal ends -->
+	 </div> 
+	</section>
+
+	<div class="ping2">
+		<div class="ptext">
+			<span class="border">
+				One Ring to rule them all, <br><br>One Ring to find them, <br><br>One Ring to bring them all and <br><br>in the darkness bind them <br><br> ―  The Lord of the Rings, J.R.R. Tolkien <br><br>
+			</span>
+		</div>
+	</div>
+
+	<section class="section section-dark">
+			<footer>
+					<script type="text/javascript">
+						var date = '23/06/2019';
+						var date2 = '01/07/2019';
+					</script>
+					<p>
+					Creation on :
+					<script type="text/javascript">
+					document.write(date)
+					</script>
+					</p>
+					<p>
+					The Last modified date is:
+					<script type="text/javascript">
+					document.write(date2)
+					</script>
+					</p>
+				Copyright &copy; 2019 BookieStore<br>
+				<br><b>Disclaimer:</b> Materials such as images,and book synopses on this website do not belong to Bookie Store.<br>
+				These materials are obtained from the Internet for assignment purpose only. 
+			</footer>
+	</section>
+
+
+
+
+</body>
+</html>
